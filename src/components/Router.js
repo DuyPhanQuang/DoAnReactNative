@@ -19,7 +19,7 @@ import ExercisesFullBody from './Exercises/ExercisesFullBody';
 import ExercisesUpperBody from './Exercises/ExercisesUpperBody';
 import ExercisesMiddleBody from './Exercises/ExercisesMiddleBody';
 import ExercisesLowerBody from './Exercises/ExercisesLowerBody';
-
+import VideoTraining from './VideoTraining/VideoTraining';
 
 export const MainStack = StackNavigator({
     ManHinh_StepOne: {
@@ -96,6 +96,12 @@ export const MainStack = StackNavigator({
         screen: MainExercises,
         navigationOptions: {
             header: null
+        }
+    },
+    ManHinh_VideoTraining: {
+        screen: VideoTraining,
+        navigationOptions: {
+            title: 'Fitness for WeightLoss'
         }
     }
 });

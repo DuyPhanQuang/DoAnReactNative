@@ -15,9 +15,9 @@ export default class Fitness extends Component {
                 <View style={wrapper}>
                     <View style={{ flex: 1, justifyContent: 'center' }}>
                     <ScrollView horizontal>
-                    <StartComponentOne />
-                    <StartComponentOne />
-                    <StartComponentOne />
+                    <StartComponentOne
+                        onPress={() => { this.props.navigation.navigate('ManHinh_VideoTraining'); }}
+                    />
                     <StartComponentOne />
                     </ScrollView> 
                     </View>

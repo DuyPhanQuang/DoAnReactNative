@@ -64,7 +64,10 @@ export default class StartComponentOne extends Component {
 
                     </View>
 
-                        <TouchableOpacity activeOpacity={0.5} >
+                        <TouchableOpacity 
+                        activeOpacity={0.5} 
+                        onPress={this.props.onPress}
+                        >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>
                             </View>

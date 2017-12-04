@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import icProfile from '../../Media/appicon/ic_profile.png';
+// import icProfile from '../../Media/appicon/ic_profile.png';
 import icHome from '../../Media/appicon/ic_home.png';
 import icWorkoutSchedule from '../../Media/appicon/icon_workoutSchedule.png';
 import icMyWeight from '../../Media/appicon/ic_weight.png';
@@ -20,7 +20,7 @@ export default class Menu extends Component {
     }
 
     render() {
-        const { container, iconProfileStyle, btnStyle, btnTextStyle, btnStyleAfter,
+        const { container, btnStyle, btnTextStyle, btnStyleAfter,
             btnTextStyleAfter, logInStyle, iconStyle, menuStyle
          } = styles;
         const logOutJSX = (
