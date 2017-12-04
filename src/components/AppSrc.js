@@ -12,12 +12,14 @@ import RateTheApp from './RateTheApp/RateTheApp';
 import WorkoutSchedule from './WorkoutSchedule/WorkoutSchedule';
 // StatusBar.setHidden(true);
 import BasicFlatList from './Tips/BasicFlatList';
+import Description from './Tips/Description';
 
 export default class AppSrc extends Component {
     render() {
         return (
             // <BasicFlatList />
-            <SideMenu />
+            // <SideMenu />
+            <Description />
             // <WorkoutSchedule />
             // <RateTheApp />
             // <Support />

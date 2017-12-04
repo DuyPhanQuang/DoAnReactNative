@@ -14,6 +14,7 @@
 		"react-native-clean-project": "^1.0.4",
 		"react-native-elements": "^0.18.4",
 		"react-native-progress": "^3.4.0",
+		"react-native-render-html": "^3.5.2",
 		"react-native-star-rating": "^1.0.8",
 		"react-native-swipeout": "^2.3.1",
 		"react-native-vector-icons": "^4.4.2",
