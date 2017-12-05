@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
-
+import { Easing, Animated } from 'react-native';
 import Main from './Main/Main';
 import Fitness from './Main/Fitness/Fitness';
 import Menu from './Main/Menu';
@@ -19,6 +19,9 @@ import ExercisesUpperBody from './Exercises/ExercisesUpperBody';
 import ExercisesMiddleBody from './Exercises/ExercisesMiddleBody';
 import ExercisesLowerBody from './Exercises/ExercisesLowerBody';
 import VideoTraining from './VideoTraining/VideoTraining';
+import PrepareRunScreen from './RunTracker/screens/PrepareRunScreen';
+import RunningScreen from './RunTracker/screens/RunningScreen';
+import ResultScreen from './RunTracker/screens/ResultScreen';
 
 export const MainStack = StackNavigator({
     ManHinh_StepOne: {
@@ -184,3 +187,43 @@ export const SideMenu = DrawerNavigator({
     drawerPosition: 'left',
     contentComponent: props => <Menu {...props} />
 });
+
+export const RunTracker = StackNavigator(
+    {
+        PrepareRunScreen: { screen: PrepareRunScreen },
+        RunningScreen: { screen: RunningScreen },
+        ResultScreen: { screen: ResultScreen }
+    },
+    {
+        mode: 'card',
+        headerMode: 'screen',
+        initialRouteName: 'PrepareRunScreen',
+        navigationOptions: {
+            gesturesEnabled: false,
+        },
+        transitionConfig: () => ({
+            transitionSpec: {
+              duration: 300,
+              easing: Easing.out(Easing.poly(4)),
+              timing: Animated.timing,
+            },
+            screenInterpolator: (sceneProps) => {
+              const { layout, position, scene } = sceneProps;
+              const { index } = scene;
+
+              const height = layout.initHeight;
+              const translateY = position.interpolate({
+                inputRange: [index - 1, index, index + 1],
+                outputRange: [height, 0, 0],
+              });
+
+              const opacity = position.interpolate({
+                inputRange: [index - 1, index - 0.99, index],
+                outputRange: [0, 1, 1],
+              });
+
+              return { opacity, transform: [{ translateY }] };
+            },
+        }),
+    }
+);
