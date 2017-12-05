@@ -40,14 +40,17 @@ export default class VideoTraining extends Component {
 
     forward() {
         this.setState({
-            currentVideoIndex: this.state.currentVideoIndex + 1
+            currentVideoIndex: this.state.currentVideoIndex + 1,
+            canNext: false
         });
+        this.video.seek(0);
     }
 
     back() {
         this.setState({
             currentVideoIndex: this.state.currentVideoIndex - 1
         });
+        this.video.seek(0);
     }
 
     render() {
@@ -61,15 +64,16 @@ export default class VideoTraining extends Component {
         return (
             <View style={container}>
                 <View style={videoContainer}>
-                   <Video
-                     source={{ uri: vids[currentVideoIndex].uri }}
-                     style={video}
-                     resizeMode="cover"
-                     onProgress={prog =>
+                    <Video
+                      ref={(ref) => { this.video = ref; }}
+                      source={{ uri: vids[currentVideoIndex].uri }}
+                      style={video}
+                      resizeMode="cover"
+                      onProgress={prog =>
                         this.setState({ progress: Math.round(prog.currentTime) })}
-                     onLoad={data => this.onLoadVideo(data)}
-                     onEnd={() => this.setState({ canNext: true })}
-                   />
+                      onLoad={data => this.onLoadVideo(data)}
+                      onEnd={() => this.setState({ canNext: true })}
+                    />
                 </View>
                 <View style={contentContainer}>
                     <View style={progressContainer}>
@@ -94,7 +98,9 @@ export default class VideoTraining extends Component {
                             >
                                 {
                                     fill => (
-                                        <Text style={remainingTime}>{ duration - progress }</Text>
+                                        <Text style={remainingTime}>
+                                            { duration - progress }
+                                        </Text>
                                     )
                                 }
                             </AnimatedCircularProgress>
@@ -111,7 +117,9 @@ export default class VideoTraining extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={text}>
-                        <Text style={videoTitle}>{ vids[currentVideoIndex].title }</Text>
+                        <Text style={videoTitle}>
+                            {vids[currentVideoIndex].title}
+                        </Text>
                         <Text style={nextVid}>
                         {
                             currentVideoIndex + 1 === vids.length
