@@ -13,7 +13,6 @@ import {
 import Video from 'react-native-video';
 
 export default class VideoOne extends Component {
-
   state = {
     rate: 1,
     volume: 1,

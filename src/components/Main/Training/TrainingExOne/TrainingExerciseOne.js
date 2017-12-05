@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as Progress from 'react-native-progress';
 import icSignout from '../../../../Media/appicon/ic_signout.png';
 import VideoOne from './VideoOne';
-
-const { width, height } = Dimensions.get('window');
+import { APP_THEME } from '../../../Constants/Color';
+import { DEVICE_WIDTH } from '../../../Constants/AppConstants';
 
 export default class TrainingExerciseOne extends Component {
-
     constructor(props) {
         super(props);
 
@@ -37,8 +36,9 @@ export default class TrainingExerciseOne extends Component {
     }
 
     render() {
-        const { container, videoStyle, progressCircle, action,
-             exContent, icon, headerContent, textHeader
+        const {
+            container, videoStyle, progressCircle, action,
+            exContent, icon, headerContent, textHeader
         } = styles;
         return (
             <View style={container}>
@@ -46,32 +46,32 @@ export default class TrainingExerciseOne extends Component {
                     <VideoOne />
                 </View>
                 <View style={action}>
-                    <View style={{ marginLeft: width / 3.3 }}>
+                    <View style={{ marginLeft: DEVICE_WIDTH / 3.3 }}>
                         <Progress.Circle
-                        style={progressCircle} 
-                        progress={this.state.progress}
-                        indeterminate={this.state.indeterminate}
-                        direction='clockwise'
-                        showsText
-                        color='#F66D6A'
-                        size={150}
+                          style={progressCircle}
+                          progress={this.state.progress}
+                          indeterminate={this.state.indeterminate}
+                          direction="clockwise"
+                          showsText
+                          color={APP_THEME}
+                          size={150}
                         />
                     </View>
-                    <View>    
+                    <View>
                         <TouchableOpacity activeOpacity={0.5} >
-                                <Image 
-                                source={icSignout}
-                                style={icon}
-                                resizeMode='contain'
+                                <Image
+                                  source={icSignout}
+                                  style={icon}
+                                  resizeMode="contain"
                                 />
-                        </TouchableOpacity>  
-                    </View>                 
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={exContent}>
                     <View style={headerContent}>
                         <Text style={textHeader}>CROSS JACKS</Text>
                     </View>
-                    
+
                 </View>
             </View>
         );
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         flex: 2,
     },
     progressCircle: {
-        
+
     },
     action: {
         flex: 1,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     exContent: {
         flex: 1,
-        
+
     },
     icon: {
         width: 70,
@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
     textHeader: {
         fontWeight: 'bold',
         fontSize: 30,
-        color: '#F66D6A'
+        color: APP_THEME
     },
     processContent: {
-        
+
     },
     progressBar: {
     },

@@ -3,19 +3,20 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import icNumberOne from '../../../Media/appicon/one.png';
 import icStar from '../../../Media/appicon/starworkout.png';
 import icInfo from '../../../Media/appicon/info.png';
+import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
 
- const { width , height } = Dimensions.get('window');
+ const { width, height } = Dimensions.get('window');
 
 export default class StartComponentOne extends Component {
-    
     render() {
-        const { wrapper, title, titleText1, titleText2, body, 
-                cardio, moreWorkouts, icon, info, infoText, detailText, button,
-                buttonText
-        } = styles;      
+        const {
+            wrapper, title, titleText1, titleText2, body,
+            cardio, moreWorkouts, icon, info, infoText, detailText, button,
+            buttonText
+        } = styles;
         return (
             <View style={wrapper} >
-                <View style={title} >                   
+                <View style={title} >
                         <Text style={titleText1} >Today</Text>
                         <Text style={titleText2} >TRAINING DAY 1</Text>
                 </View>
@@ -23,9 +24,9 @@ export default class StartComponentOne extends Component {
                     <View style={cardio} >
                         <View >
                         <Image
-                        source={icNumberOne}
-                        style={icon}
-                        resizeMode='contain' 
+                          source={icNumberOne}
+                          style={icon}
+                          resizeMode="contain"
                         />
                         </View>
                         <View style={info}>
@@ -33,45 +34,46 @@ export default class StartComponentOne extends Component {
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={detailText} >6 min</Text>
                                 <Text style={detailText} >7 exercises</Text>
-                            </View>    
+                            </View>
                         </View>
                         <View >
                             <TouchableOpacity activeOpacity={0.5} >
-                                <Image 
-                                source={icInfo}
-                                style={icon}
-                                resizeMode='contain'
+                                <Image
+                                  source={icInfo}
+                                  style={icon}
+                                  resizeMode="contain"
                                 />
                             </TouchableOpacity>
-                        </View>   
-                    </View>   
+                        </View>
+                    </View>
 
                     <View style={moreWorkouts} >
                         <View >
                         <Image
-                        source={icStar}
-                        style={icon}
-                        resizeMode='contain' 
+                          source={icStar}
+                          style={icon}
+                          resizeMode="contain"
                         />
                         </View>
                         <View style={info}>
                             <Text style={infoText} >Add more Workouts</Text>
                             <View>
                                 <Text style={detailText} >
-                                To boost your results.</Text>                               
-                            </View>    
+                                To boost your results.
+                                </Text>
+                            </View>
                         </View>
 
                     </View>
 
-                        <TouchableOpacity 
-                        activeOpacity={0.5} 
-                        onPress={this.props.onPress}
+                        <TouchableOpacity
+                          activeOpacity={0.5}
+                          onPress={this.props.onPress}
                         >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>
                             </View>
-                        </TouchableOpacity>   
+                        </TouchableOpacity>
 
                 </View>
             </View>
@@ -82,18 +84,18 @@ export default class StartComponentOne extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        height: height * 0.65,
+        height: DEVICE_HEIGHT * 0.65,
         backgroundColor: '#FFF',
-        marginTop: height * 0.02,
-        marginBottom: height * 0.02,
-        width: height * 0.5,
-        borderRadius: 20, 
+        marginTop: DEVICE_HEIGHT * 0.02,
+        marginBottom: DEVICE_HEIGHT * 0.02,
+        width: DEVICE_HEIGHT * 0.5,
+        borderRadius: 20,
         paddingHorizontal: 20,
-        marginLeft: height * 0.05,      
+        marginLeft: DEVICE_HEIGHT * 0.05,
     },
     title: {
         flex: 1,
-        paddingVertical: 30,
+        paddingVertical: DEVICE_HEIGHT * 0.05,
         borderColor: 'transparent',
         borderWidth: 2,
         borderBottomColor: '#E5E5E5',
@@ -115,7 +117,8 @@ const styles = StyleSheet.create({
     },
     cardio: {
         flexDirection: 'row',
-        paddingVertical: 30
+        paddingVertical: 30,
+        alignItems: 'center'
     },
     icon: {
         width: 35,
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50
     },
     button: {
-        height: height * 0.08,
+        height: DEVICE_HEIGHT * 0.08,
         backgroundColor: '#FFBF57',
         justifyContent: 'center',
         alignItems: 'center',

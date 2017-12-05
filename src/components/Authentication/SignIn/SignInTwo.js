@@ -7,7 +7,6 @@ import ButtonSubmit from './ButtonSubmit';
 import Section from './Section';
 
 export default class SignInTwo extends Component {
-    
     render() {
         return (
             <BackgroundScreen>
@@ -16,8 +15,8 @@ export default class SignInTwo extends Component {
                 <View style={{ flex: 1 }}>
                     <ButtonSubmit />
                     <Section />
-                </View>  
-            </BackgroundScreen>      
+                </View>
+            </BackgroundScreen>
         );
     }
 }

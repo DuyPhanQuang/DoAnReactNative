@@ -1,55 +1,57 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Image,
-        Dimensions,
+import { View, TextInput, StyleSheet, KeyboardAvoidingView, Image
 } from 'react-native';
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
+
+const usernameIcon = require('../../../Media/appicon/username.png');
+const passwordIcon = require('../../../Media/appicon/password.png');
 
 export default class Form extends Component {
-    
     render() {
-        const { container, inputWrap, icon, input, iconWrap } = styles;
+        const {
+            container, inputWrap, icon, input, iconWrap
+        } = styles;
         return (
-            <KeyboardAvoidingView behavior='padding' style={container}>
+            <KeyboardAvoidingView behavior="padding" style={container}>
                 <View style={inputWrap}>
                     <View style={iconWrap}>
                         <Image
-                            source={require('../../../Media/appicon/username.png')}
-                            style={icon}
-                        />
-                    </View>
-                    <TextInput 
-                        placeholder='Username'
-                        placeholderTextColor='#FFF'
-                        style={input}
-                        underlineColorAndroid='transparent'
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                        returnKeyType={'done'}
-                    />
-                </View>
-                <View style={inputWrap}>
-                    <View style={iconWrap}>
-                        <Image
-                            source={require('../../../Media/appicon/password.png')}
-                            style={icon}
+                          source={usernameIcon}
+                          style={icon}
                         />
                     </View>
                     <TextInput
-                        secureTextEntry
-                        placeholder='Password'
-                        placeholderTextColor='#FFF'
-                        style={input}
-                        underlineColorAndroid='transparent'
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                        returnKeyType={'done'}
+                      placeholder="Username"
+                      placeholderTextColor="#FFF"
+                      style={input}
+                      underlineColorAndroid="transparent"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      returnKeyType="done"
                     />
                 </View>
-            </KeyboardAvoidingView>    
+                <View style={inputWrap}>
+                    <View style={iconWrap}>
+                        <Image
+                          source={passwordIcon}
+                          style={icon}
+                        />
+                    </View>
+                    <TextInput
+                      secureTextEntry
+                      placeholder="Password"
+                      placeholderTextColor="#FFF"
+                      style={input}
+                      underlineColorAndroid="transparent"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      returnKeyType="done"
+                    />
+                </View>
+            </KeyboardAvoidingView>
         );
     }
 }
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 15,
-        
+
     },
     icon: {
         width: 25,

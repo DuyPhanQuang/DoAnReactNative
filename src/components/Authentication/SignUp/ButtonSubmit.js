@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
 
 export default class ButtonSubmit extends Component {
     render() {
         const { container, buttonSubmit, text } = styles;
         return (
-            <View style={container}>    
+            <View style={container}>
                 <TouchableOpacity activeOpacity={0.7} >
                     <View style={buttonSubmit}>
                         <Text style={text}>Continue</Text>
-                    </View>     
-                </TouchableOpacity>  
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
 }
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {

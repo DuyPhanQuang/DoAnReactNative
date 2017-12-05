@@ -6,7 +6,7 @@ export default class StepThree extends Component {
         return (
            <View>
                <Text>Step 2 of 3</Text>
-           </View> 
+           </View>
         );
     }
 }

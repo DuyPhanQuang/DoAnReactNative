@@ -1,6 +1,5 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
-import { View, Text, Image, StyleSheet } from 'react-native';
 
 import Main from './Main/Main';
 import Fitness from './Main/Fitness/Fitness';
@@ -43,19 +42,19 @@ export const MainStack = StackNavigator({
     ManHinh_Menu: {
         screen: Menu,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_Home: {
         screen: Home,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_WorkoutSchedule: {
         screen: WorkoutSchedule,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_MyWeight: {
@@ -71,19 +70,19 @@ export const MainStack = StackNavigator({
     ManHinh_RateTheApp: {
         screen: RateTheApp,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_Support: {
         screen: Support,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_ChangeInfo: {
         screen: ChangeInfo,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_SignIn: {
@@ -109,7 +108,7 @@ export const ExercisesFullBodyStack = StackNavigator({
     ManHinh_FullBody: {
         screen: ExercisesFullBody,
         navigationOptions: {
-        }       
+        }
     }
 });
 export const ExercisesUpperBodyStack = StackNavigator({
@@ -137,30 +136,30 @@ export const ExercisesLowerBodyStack = StackNavigator({
     }
 });
 
-//set exercisestab
+// set exercisestab
 export const ExercisesTab = TabNavigator({
     FullBody: {
         screen: ExercisesFullBodyStack,
         navigationOptions: {
-            
+
         }
     },
     UpperBody: {
         screen: ExercisesUpperBodyStack,
         navigationOptions: {
-            
+
         }
     },
     MiddleBody: {
         screen: ExercisesMiddleBodyStack,
         navigationOptions: {
-            
+
         }
     },
     LowerBody: {
         screen: ExercisesLowerBodyStack,
         navigationOptions: {
-            
+
         }
     }
 }, {
@@ -171,7 +170,7 @@ export const ExercisesTab = TabNavigator({
             backgroundColor: '#dddddd'
         }
     },
-    
+
 });
 
 // set menu

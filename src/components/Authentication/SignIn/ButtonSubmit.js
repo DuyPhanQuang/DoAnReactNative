@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
+import { APP_THEME } from '../../Constants/Color';
 
 export default class ButtonSubmit extends Component {
     render() {
-        const { container, buttonSubmit, text, buttonSkip } = styles;
+        const {
+            container, buttonSubmit, text, buttonSkip
+        } = styles;
         return (
-            <View style={container}>    
+            <View style={container}>
                 <TouchableOpacity activeOpacity={0.7} >
                     <View style={buttonSubmit}>
                         <Text style={text}>Get Started</Text>
-                    </View>     
-                </TouchableOpacity> 
+                    </View>
+                </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.7} >
                     <View style={buttonSkip}>
                         <Text style={text}>Skip</Text>
-                    </View>     
-                </TouchableOpacity>  
-            </View>      
+                    </View>
+                </TouchableOpacity>
+            </View>
         );
     }
 }
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
         width: DEVICE_WIDTH - 100,
         height: DEVICE_HEIGHT / 14,
         borderRadius: 100,
-        backgroundColor: '#F66D6A',
+        backgroundColor: APP_THEME,
         justifyContent: 'center',
         alignItems: 'center',
     },
