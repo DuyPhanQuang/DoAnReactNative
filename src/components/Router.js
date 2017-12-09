@@ -103,7 +103,8 @@ export const MainStack = StackNavigator({
         navigationOptions: {
             title: 'Fitness for WeightLoss'
         }
-    }
+    },
+
 });
 export const ExercisesFullBodyStack = StackNavigator({
     ManHinh_FullBody: {

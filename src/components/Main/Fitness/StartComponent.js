@@ -1,38 +1,41 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, RefreshControl, Image 
+} from 'react-native';
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
 import icNumberOne from '../../../Media/appicon/one.png';
 import icStar from '../../../Media/appicon/starworkout.png';
 import icInfo from '../../../Media/appicon/info.png';
+import { getTrainingDayFromServer } from '../../../../networking/Server';
 
- const { width , height } = Dimensions.get('window');
-
-export default class StartComponentOne extends Component {
-    
+class FlatListItem extends Component {
+    constructor(props){
+        super(props);
+    }
     render() {
         const { wrapper, title, titleText1, titleText2, body, 
-                cardio, moreWorkouts, icon, info, infoText, detailText, button,
-                buttonText
-        } = styles;      
+            cardio, moreWorkouts, icon, info, infoText, detailText, button,
+            buttonText
+        } = styles;  
         return (
             <View style={wrapper} >
                 <View style={title} >                   
                         <Text style={titleText1} >Today</Text>
-                        <Text style={titleText2} >TRAINING DAY 1</Text>
+                        <Text style={titleText2} >{this.props.item.Name}</Text>
                 </View>
                 <View style={body} >
                     <View style={cardio} >
                         <View >
-                        <Image
-                        source={icNumberOne}
-                        style={icon}
-                        resizeMode='contain' 
-                        />
+                            <Image
+                            source={icNumberOne}
+                            style={icon}
+                            resizeMode='contain' 
+                            />
                         </View>
                         <View style={info}>
                             <Text style={infoText} >Cardio</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={detailText} >6 min</Text>
-                                <Text style={detailText} >7 exercises</Text>
+                                <Text style={detailText} >{this.props.item.TotalTime} minutes</Text>
+                                <Text style={detailText} >{this.props.item.TotalExercises} exercises</Text>
                             </View>    
                         </View>
                         <View >
@@ -48,11 +51,11 @@ export default class StartComponentOne extends Component {
 
                     <View style={moreWorkouts} >
                         <View >
-                        <Image
-                        source={icStar}
-                        style={icon}
-                        resizeMode='contain' 
-                        />
+                            <Image
+                            source={icStar}
+                            style={icon}
+                            resizeMode='contain' 
+                            />
                         </View>
                         <View style={info}>
                             <Text style={infoText} >Add more Workouts</Text>
@@ -66,7 +69,7 @@ export default class StartComponentOne extends Component {
 
                         <TouchableOpacity 
                         activeOpacity={0.5} 
-                        onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining')}
+                        onPress={this.props.onPress()}
                         >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>
@@ -78,18 +81,17 @@ export default class StartComponentOne extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        height: height * 0.65,
+        height: DEVICE_HEIGHT * 0.65,
         backgroundColor: '#FFF',
-        marginTop: height * 0.02,
-        marginBottom: height * 0.02,
-        width: height * 0.5,
+        marginTop: DEVICE_HEIGHT * 0.02,
+        marginBottom: DEVICE_HEIGHT * 0.02,
+        width: DEVICE_HEIGHT * 0.5,
         borderRadius: 20, 
         paddingHorizontal: 20,
-        marginLeft: height * 0.05,      
+        marginLeft: DEVICE_HEIGHT * 0.05,      
     },
     title: {
         flex: 1,
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50
     },
     button: {
-        height: height * 0.08,
+        height: DEVICE_HEIGHT * 0.08,
         backgroundColor: '#FFBF57',
         justifyContent: 'center',
         alignItems: 'center',
@@ -153,3 +155,44 @@ const styles = StyleSheet.create({
         color: '#FFF'
     }
 });
+
+export default class StartComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = ({
+            trainingdayFromServer: [],
+        });
+    }
+    componentDidMount() {
+        this.refreshDataFromServer();
+    }
+    refreshDataFromServer = () => {
+        getTrainingDayFromServer().then((trainingday) => {
+            this.setState({ trainingdayFromServer: trainingday });
+        }).catch((error) => {
+            this.setState({ trainingdayFromServer: [] });
+        });
+    }
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <FlatList 
+                    data={this.state.trainingdayFromServer}
+                    renderItem={({ item, index }) => {
+                        return (
+                        <FlatListItem 
+                        item={item} 
+                        index={index}  
+                        onPress={()=>this.props.onPress()}
+                        >
+                        </FlatListItem>);
+                    }}
+                    keyExtractor={(item, index) => item.Name}
+                    horizontal
+                >
+                </FlatList>
+            </View>
+        );
+    }
+}

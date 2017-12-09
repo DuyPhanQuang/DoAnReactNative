@@ -13,13 +13,17 @@ import WorkoutSchedule from './WorkoutSchedule/WorkoutSchedule';
 // StatusBar.setHidden(true);
 import BasicFlatList from './Tips/BasicFlatList';
 import Description from './Tips/Description';
+import StartComponent from './Main/Fitness/StartComponent';
+import VideoTraining from './VideoTraining/VideoTraining';
 
 export default class AppSrc extends Component {
     render() {
         return (
+            // <VideoTraining />
+            // <StartComponent />
             // <BasicFlatList />
-            // <SideMenu />
-            <Description />
+            <SideMenu />
+            // <Description />
             // <WorkoutSchedule />
             // <RateTheApp />
             // <Support />

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, FlatList, Text, Image, RefreshControl, TouchableOpacity } from 'react-native';
+import { View, Dimensions, StyleSheet, FlatList, Text, Image, RefreshControl, TouchableOpacity 
+} from 'react-native';
 // import flatListData from './flatListData';
-import { getTipsFromServer } from '../../../networking/Server';
 import Icon from 'react-native-vector-icons/Entypo';
+import { getTipsFromServer } from '../../../networking/Server';
+
 
 class FlatListItem extends Component {
     render() {
