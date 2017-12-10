@@ -132,7 +132,7 @@ export default class VideoTraining extends Component {
                     <View>
                         <Progress.Bar
                           width={DEVICE_WIDTH}
-                          height={DEVICE_HEIGHT / 10}
+                          height={DEVICE_HEIGHT / 20}
                           borderRadius={0}
                           color={APP_THEME}
                           progress={(currentVideoIndex + 1) / totalVideo}

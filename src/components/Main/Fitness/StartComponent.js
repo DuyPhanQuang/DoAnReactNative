@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image
+} from 'react-native';
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
 import icNumberOne from '../../../Media/appicon/one.png';
 import icStar from '../../../Media/appicon/starworkout.png';
 import icInfo from '../../../Media/appicon/info.png';
-import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
+import { getTrainingDayFromServer } from '../../../../networking/Server';
 
-export default class StartComponentOne extends Component {
+class FlatListItem extends Component {
     render() {
         const {
-            wrapper, title, titleText1, titleText2, body,
+ wrapper, title, titleText1, titleText2, body,
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
             buttonText
         } = styles;
@@ -16,22 +18,26 @@ export default class StartComponentOne extends Component {
             <View style={wrapper} >
                 <View style={title} >
                         <Text style={titleText1} >Today</Text>
-                        <Text style={titleText2} >TRAINING DAY 1</Text>
+                        <Text style={titleText2} >{this.props.item.Name}</Text>
                 </View>
                 <View style={body} >
                     <View style={cardio} >
                         <View >
-                        <Image
-                          source={icNumberOne}
-                          style={icon}
-                          resizeMode="contain"
-                        />
+                            <Image
+                              source={icNumberOne}
+                              style={icon}
+                              resizeMode="contain"
+                            />
                         </View>
                         <View style={info}>
                             <Text style={infoText} >Cardio</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={detailText} >6 min</Text>
-                                <Text style={detailText} >7 exercises</Text>
+                                <Text style={detailText} >
+                                    {this.props.item.TotalTime} minutes
+                                </Text>
+                                <Text style={detailText} >
+                                    {this.props.item.TotalExercises} exercises
+                                </Text>
                             </View>
                         </View>
                         <View >
@@ -47,11 +53,11 @@ export default class StartComponentOne extends Component {
 
                     <View style={moreWorkouts} >
                         <View >
-                        <Image
-                          source={icStar}
-                          style={icon}
-                          resizeMode="contain"
-                        />
+                            <Image
+                              source={icStar}
+                              style={icon}
+                              resizeMode="contain"
+                            />
                         </View>
                         <View style={info}>
                             <Text style={infoText} >Add more Workouts</Text>
@@ -66,7 +72,7 @@ export default class StartComponentOne extends Component {
 
                         <TouchableOpacity
                           activeOpacity={0.5}
-                          onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining')}
+                          onPress={this.props.onPress()}
                         >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>
@@ -78,7 +84,6 @@ export default class StartComponentOne extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
     },
     title: {
         flex: 1,
-        paddingVertical: DEVICE_HEIGHT * 0.05,
+        paddingVertical: 30,
         borderColor: 'transparent',
         borderWidth: 2,
         borderBottomColor: '#E5E5E5',
@@ -115,8 +120,7 @@ const styles = StyleSheet.create({
     },
     cardio: {
         flexDirection: 'row',
-        paddingVertical: 30,
-        alignItems: 'center'
+        paddingVertical: 30
     },
     icon: {
         width: 35,
@@ -154,3 +158,40 @@ const styles = StyleSheet.create({
         color: '#FFF'
     }
 });
+
+export default class StartComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = ({
+            trainingdayFromServer: [],
+        });
+    }
+    componentDidMount() {
+        this.refreshDataFromServer();
+    }
+    refreshDataFromServer = () => {
+        getTrainingDayFromServer().then((trainingday) => {
+            this.setState({ trainingdayFromServer: trainingday });
+        }).catch((error) => {
+            this.setState({ trainingdayFromServer: [] });
+        });
+    }
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <FlatList
+                  data={this.state.trainingdayFromServer}
+                  renderItem={({ item, index }) => (
+                        <FlatListItem
+                          item={item}
+                          index={index}
+                          onPress={() => this.props.onPress()}
+                        />)}
+                  keyExtractor={(item, index) => item.Name}
+                  horizontal
+                />
+            </View>
+        );
+    }
+}

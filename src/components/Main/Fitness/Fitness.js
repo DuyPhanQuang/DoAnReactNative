@@ -4,6 +4,7 @@ import Header from './Header';
 import StartComponentOne from './StartComponentOne';
 import FunctionBar from './FunctionBar';
 import { APP_THEME } from '../../Constants/Color';
+import StartComponent from './StartComponent';
 
 export default class Fitness extends Component {
     render() {
@@ -15,12 +16,10 @@ export default class Fitness extends Component {
                 <FunctionBar />
                 <View style={wrapper}>
                     <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <ScrollView horizontal>
-                    <StartComponentOne
-                      onPress={() => { this.props.navigation.navigate('ManHinh_VideoTraining'); }}
-                    />
-                    <StartComponentOne />
-                    </ScrollView>
+                        {/* <StartComponent
+                            onPress={() => alert("ccc")}
+                        /> */}
+                        <StartComponent />
                     </View>
                 </View>
             </View>

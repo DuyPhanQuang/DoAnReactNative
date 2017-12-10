@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Text, Image, RefreshControl, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, Text, Image, RefreshControl, TouchableOpacity
+} from 'react-native';
 // import flatListData from './flatListData';
 import Icon from 'react-native-vector-icons/Entypo';
 import { getTipsFromServer } from '../../../networking/Server';
@@ -56,12 +57,19 @@ export default class BasicFlatList extends Component {
         super(props);
         this.state = ({
             refreshing: false,
-            tipsFromServer: [], // data save all in this state. each data saved so render dc call lai
+            tipsFromServer: [],
+            // data save all in this state.
+            // each data saved so render dc call lai
         });
     }
     componentDidMount() {
         this.refreshDataFromServer();
     }
+
+    onRefresh = () => {
+        this.refreshDataFromServer();
+    }
+
     refreshDataFromServer = () => {
         this.setState({ refreshing: true });
         getTipsFromServer().then((tips) => {
@@ -71,9 +79,6 @@ export default class BasicFlatList extends Component {
             this.setState({ tipsFromServer: [] });
             this.setState({ refreshing: false });
         });
-    }
-    onRefresh = () => {
-        this.refreshDataFromServer();
     }
 
     render() {
