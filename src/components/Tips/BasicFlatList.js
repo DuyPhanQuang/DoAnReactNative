@@ -1,56 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Text, Image, RefreshControl, TouchableOpacity
-} from 'react-native';
+import { View, FlatList, RefreshControl } from 'react-native';
 // import flatListData from './flatListData';
-import Icon from 'react-native-vector-icons/Entypo';
+import FlatListItem from './FlatListItem';
 import { getTipsFromServer } from '../../../networking/Server';
-import { APP_THEME } from '../Constants/Color';
-
-class FlatListItem extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1 }}>
-                <TouchableOpacity activeOpacity={0.5}>
-                <View
-                  style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        // backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen' : 'tomato'
-                        backgroundColor: '#FFF',
-                        paddingTop: 5
-                    }}
-                >
-                    <Image
-                      source={{ uri: `http://${this.props.item.imageURL}` }}
-                      style={{ width: 100, height: 100, margin: 5 }}
-                    />
-                    <View style={{ flex: 1, }}>
-                        <Text style={styles.title}>{this.props.item.Name}</Text>
-                        <Text style={styles.textContent}>{this.props.item.NoiDung}</Text>
-                    </View>
-                    <View style={{ justifyContent: 'center', }}>
-                    <Icon name="chevron-right" size={80} color={APP_THEME} />
-                    </View>
-
-                </View>
-                </TouchableOpacity>
-                <View style={{ height: 2, backgroundColor: APP_THEME }} />
-
-            </View>
-        );
-    }
-}
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-    },
-    textContent: {
-        color: '#000',
-        padding: 10,
-        fontSize: 16,
-    }
-});
 
 export default class BasicFlatList extends Component {
     constructor(props) {
