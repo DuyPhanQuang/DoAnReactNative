@@ -22,8 +22,8 @@ export default class AppSrc extends Component {
             // <VideoTraining />
             // <StartComponent />
             // <BasicFlatList />
-            <SideMenu />
-            // <Description />
+            // <SideMenu />
+            <Description />
             // <WorkoutSchedule />
             // <RateTheApp />
             // <Support />

@@ -8,9 +8,6 @@ import icInfo from '../../../Media/appicon/info.png';
 import { getTrainingDayFromServer } from '../../../../networking/Server';
 
 class FlatListItem extends Component {
-    constructor(props){
-        super(props);
-    }
     render() {
         const { wrapper, title, titleText1, titleText2, body, 
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
@@ -39,7 +36,10 @@ class FlatListItem extends Component {
                             </View>    
                         </View>
                         <View >
-                            <TouchableOpacity activeOpacity={0.5} >
+                            <TouchableOpacity 
+                            activeOpacity={0.5} 
+                            onPress={() => { alert(this.props.item.Note); }}
+                            >
                                 <Image 
                                 source={icInfo}
                                 style={icon}
@@ -69,7 +69,7 @@ class FlatListItem extends Component {
 
                         <TouchableOpacity 
                         activeOpacity={0.5} 
-                        onPress={this.props.onPress()}
+                        onPress={this.props.onPress}
                         >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>
@@ -184,7 +184,6 @@ export default class StartComponent extends Component {
                         <FlatListItem 
                         item={item} 
                         index={index}  
-                        onPress={()=>this.props.onPress()}
                         >
                         </FlatListItem>);
                     }}
