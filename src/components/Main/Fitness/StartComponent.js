@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, RefreshControl, Image 
-} from 'react-native';
-import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
-import icNumberOne from '../../../Media/appicon/one.png';
-import icStar from '../../../Media/appicon/starworkout.png';
-import icInfo from '../../../Media/appicon/info.png';
+import { View, FlatList } from 'react-native';
+import TrainingItem from './TrainingItem';
 import { getTrainingDayFromServer } from '../../../../networking/Server';
 
+<<<<<<< HEAD
 class FlatListItem extends Component {
     render() {
         const { wrapper, title, titleText1, titleText2, body, 
@@ -156,6 +153,8 @@ const styles = StyleSheet.create({
     }
 });
 
+=======
+>>>>>>> 6e36faf92bc04ef86525f4ae47c2477d2452e97b
 export default class StartComponent extends Component {
     constructor(props) {
         super(props);
@@ -177,6 +176,7 @@ export default class StartComponent extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
+<<<<<<< HEAD
                 <FlatList 
                     data={this.state.trainingdayFromServer}
                     renderItem={({ item, index }) => {
@@ -191,6 +191,19 @@ export default class StartComponent extends Component {
                     horizontal
                 >
                 </FlatList>
+=======
+                <FlatList
+                  data={this.state.trainingdayFromServer}
+                  renderItem={({ item, index }) => (
+                        <TrainingItem
+                          item={item}
+                          index={index}
+                          onPress={this.props.onPress}
+                        />)}
+                  keyExtractor={(item, index) => item.Name}
+                  horizontal
+                />
+>>>>>>> 6e36faf92bc04ef86525f4ae47c2477d2452e97b
             </View>
         );
     }

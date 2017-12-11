@@ -1,7 +1,6 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
-import { View, Text, Image, StyleSheet } from 'react-native';
-
+import { Easing, Animated } from 'react-native';
 import Main from './Main/Main';
 import Fitness from './Main/Fitness/Fitness';
 import Menu from './Main/Menu';
@@ -20,6 +19,9 @@ import ExercisesUpperBody from './Exercises/ExercisesUpperBody';
 import ExercisesMiddleBody from './Exercises/ExercisesMiddleBody';
 import ExercisesLowerBody from './Exercises/ExercisesLowerBody';
 import VideoTraining from './VideoTraining/VideoTraining';
+import PrepareRunScreen from './RunTracker/screens/PrepareRunScreen';
+import RunningScreen from './RunTracker/screens/RunningScreen';
+import ResultScreen from './RunTracker/screens/ResultScreen';
 
 export const MainStack = StackNavigator({
     ManHinh_StepOne: {
@@ -43,19 +45,19 @@ export const MainStack = StackNavigator({
     ManHinh_Menu: {
         screen: Menu,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_Home: {
         screen: Home,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_WorkoutSchedule: {
         screen: WorkoutSchedule,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_MyWeight: {
@@ -71,19 +73,19 @@ export const MainStack = StackNavigator({
     ManHinh_RateTheApp: {
         screen: RateTheApp,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_Support: {
         screen: Support,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_ChangeInfo: {
         screen: ChangeInfo,
         navigationOptions: {
-            
+
         }
     },
     ManHinh_SignIn: {
@@ -104,13 +106,15 @@ export const MainStack = StackNavigator({
             title: 'Fitness for WeightLoss'
         }
     },
-
+    ManHinh_RunTracker: { screen: PrepareRunScreen },
+    ManHinh_Running: { screen: RunningScreen },
+    ManHinh_Result: { screen: ResultScreen }
 });
 export const ExercisesFullBodyStack = StackNavigator({
     ManHinh_FullBody: {
         screen: ExercisesFullBody,
         navigationOptions: {
-        }       
+        }
     }
 });
 export const ExercisesUpperBodyStack = StackNavigator({
@@ -138,30 +142,30 @@ export const ExercisesLowerBodyStack = StackNavigator({
     }
 });
 
-//set exercisestab
+// set exercisestab
 export const ExercisesTab = TabNavigator({
     FullBody: {
         screen: ExercisesFullBodyStack,
         navigationOptions: {
-            
+
         }
     },
     UpperBody: {
         screen: ExercisesUpperBodyStack,
         navigationOptions: {
-            
+
         }
     },
     MiddleBody: {
         screen: ExercisesMiddleBodyStack,
         navigationOptions: {
-            
+
         }
     },
     LowerBody: {
         screen: ExercisesLowerBodyStack,
         navigationOptions: {
-            
+
         }
     }
 }, {
@@ -172,7 +176,7 @@ export const ExercisesTab = TabNavigator({
             backgroundColor: '#dddddd'
         }
     },
-    
+
 });
 
 // set menu
@@ -186,3 +190,43 @@ export const SideMenu = DrawerNavigator({
     drawerPosition: 'left',
     contentComponent: props => <Menu {...props} />
 });
+
+// export const RunTrackerStack = StackNavigator(
+//     {
+//         PrepareRunScreen: { screen: PrepareRunScreen },
+//         RunningScreen: { screen: RunningScreen },
+//         ResultScreen: { screen: ResultScreen }
+//     },
+//     {
+//         mode: 'card',
+//         headerMode: 'screen',
+//         initialRouteName: 'PrepareRunScreen',
+//         navigationOptions: {
+//             gesturesEnabled: false,
+//         },
+//         transitionConfig: () => ({
+//             transitionSpec: {
+//               duration: 300,
+//               easing: Easing.out(Easing.poly(4)),
+//               timing: Animated.timing,
+//             },
+//             screenInterpolator: (sceneProps) => {
+//               const { layout, position, scene } = sceneProps;
+//               const { index } = scene;
+
+//               const height = layout.initHeight;
+//               const translateY = position.interpolate({
+//                 inputRange: [index - 1, index, index + 1],
+//                 outputRange: [height, 0, 0],
+//               });
+
+//               const opacity = position.interpolate({
+//                 inputRange: [index - 1, index - 0.99, index],
+//                 outputRange: [0, 1, 1],
+//               });
+
+//               return { opacity, transform: [{ translateY }] };
+//             },
+//         }),
+//     }
+// );

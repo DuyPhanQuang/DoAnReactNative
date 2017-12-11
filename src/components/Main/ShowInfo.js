@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { Image, View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon1 from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Entypo';
+import { DEVICE_HEIGHT } from '../Constants/AppConstants';
+
+const profileIcon = require('../../Media/appicon/ic_profile.png');
 
 export default class ShowInfo extends Component {
     render() {
-        const { container, litleContainer, imgProfile, profile, textName,
-                textSub, icRightArrow, buttonUpgrade, textBtnUpgrade,
-                tapinWrap,
+        const {
+            container, litleContainer, imgProfile, profile, textName,
+            textSub, icRightArrow, buttonUpgrade, textBtnUpgrade,
+            tapinWrap,
         } = styles;
         return (
             <View style={container}>
                 <View style={litleContainer}>
-                    <Image 
-                        source={require('../../Media/appicon/ic_profile.png')} 
-                        style={imgProfile}
+                    <Image
+                      source={profileIcon}
+                      style={imgProfile}
                     />
                     <TouchableOpacity activeOpacity={0.5} >
                         <View style={profile}>
@@ -22,13 +26,13 @@ export default class ShowInfo extends Component {
                                 <Text style={textName}>Tap to View Profile</Text>
                                 <Text style={textSub}>Profile, Training Plan</Text>
                             </View>
-                            <Icon2 name='chevron-thin-right' size={30} color='#9C9494' />
-                        </View>  
+                            <Icon2 name="chevron-thin-right" size={30} color="#9C9494" />
+                        </View>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity activeOpacity={0.5}>
                     <View style={buttonUpgrade}>
-                        <Icon1 name="star" size={25} color='#FFF' />
+                        <Icon1 name="star" size={25} color="#FFF" />
                         <Text style={textBtnUpgrade}>Upgrade to Premium</Text>
                     </View>
                 </TouchableOpacity>
@@ -36,8 +40,6 @@ export default class ShowInfo extends Component {
         );
     }
 }
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 15,
         marginHorizontal: 10,
-        
+
     },
     imgProfile: {
         width: 100,
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     buttonUpgrade: {
-        
+
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#FFBF57',
         marginHorizontal: 20,
-        
+
     },
     icStar: {
         color: '#FFF',

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import * as Progress from 'react-native-progress';
+import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
 
-const { width, height } = Dimensions.get('window');
+const trackIcon = require('../../../Media/appicon/ic_track.png');
+const balanceIcon = require('../../../Media/appicon/ic_balance.png');
 
 export default class FunctionBar extends Component {
     constructor(props) {
@@ -34,42 +36,43 @@ export default class FunctionBar extends Component {
     }
 
     render() {
-        const { container, progress, one, two, three, text, img } = styles;
+        const {
+            container, progress, one, two, three, text, img
+        } = styles;
         return (
             <View style={container}>
-                    <View style={one}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                        <Image
-                            source={require('../../../Media/appicon/ic_track.png')}
-                            style={img}
-                        />
-                        </TouchableOpacity>
-                        <Text style={text}>Track {'\n'} Run</Text>
-                    </View>
-                
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={this.props.onRunTrackerPress}
+                  style={one}
+                >
+                    <Image
+                      source={trackIcon}
+                      style={img}
+                    />
+                    <Text style={text}>Run{'\n'}Tracker</Text>
+                </TouchableOpacity>
+
                 <View style={two}>
-                    <Progress.Circle 
-                    style={progress}
-                    progress={this.state.progress}
-                    indeterminate={this.state.indeterminate}
-                    direction='clockwise'
-                    showsText
-                    color='#FFF'
-                    size={90}
+                    <Progress.Circle
+                      style={progress}
+                      progress={this.state.progress}
+                      indeterminate={this.state.indeterminate}
+                      direction="clockwise"
+                      showsText
+                      color="#FFF"
+                      size={90}
                     />
                     <Text style={text}>Progress</Text>
                 </View>
-                
-                    <View style={three}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                        <Image
-                            source={require('../../../Media/appicon/ic_balance.png')}
-                            style={img}
-                        />
-                        </TouchableOpacity>
-                        <Text style={text}>  Your {'\n'}Weight</Text>
-                    </View>
-                
+
+                <TouchableOpacity activeOpacity={0.5} style={three}>
+                    <Image
+                      source={balanceIcon}
+                      style={img}
+                    />
+                    <Text style={text}>Your{'\n'}Weight</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -80,9 +83,9 @@ const styles = StyleSheet.create({
         flex: 2,
         flexDirection: 'row',
         marginTop: 5,
-        height: height * 0.05,
+        height: DEVICE_HEIGHT * 0.05,
         // backgroundColor: '#F00',
-        marginHorizontal: height * 0.05,
+        marginHorizontal: DEVICE_HEIGHT * 0.05,
 
         alignItems: 'center',
         justifyContent: 'space-around'
@@ -114,5 +117,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: '#FFF',
+        textAlign: 'center'
     }
 });

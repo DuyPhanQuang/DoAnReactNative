@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar 
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar
 } from 'react-native';
 import icApp from '../../Media/appicon/ic_app.png';
-
-const { height, width } = Dimensions.get('window');
+import { APP_THEME } from '../Constants/Color';
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from '../Constants/AppConstants';
 
 StatusBar.setHidden(true);
 
 export default class StepOne extends Component {
     render() {
-        const { container, one, two, three, iconStyle, btnStyle, textBtnStyle } = styles;
-        return (         
+        const {
+            container, one, two, three,
+            iconStyle, btnStyle, textBtnStyle
+        } = styles;
+        return (
             <View style={container}>
                 <Text style={one} >Hello</Text>
                 <Image source={icApp} style={iconStyle} />
                 <Text style={two} >Welcome to Fitness{'\n'} for Weight Loss!</Text>
-                <Text style={three} >Please, read program details in the{'\n'} appropriate section 
+                <Text style={three} >Please, read program details in the{'\n'} appropriate section
                     of the Menu before {'\n'} starting any plan. We strongly advise {'\n'}
                     you to consult a doctor before starting {'\n'} any fitness program.
                 </Text>
                 <TouchableOpacity
-                onPress={() => { this.props.navigation.navigate('ManHinh_Fitness'); }} 
-                style={btnStyle}
+                  onPress={() => { this.props.navigation.navigate('ManHinh_Fitness'); }}
+                  style={btnStyle}
                 >
                     <Text style={textBtnStyle} >NEXT</Text>
                 </TouchableOpacity>
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#F66D6A'
+        backgroundColor: APP_THEME
     },
     one: {
         fontSize: 30,
@@ -50,25 +53,27 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     three: {
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
         color: '#FFF',
-        marginBottom: 100
-    }, 
+        marginTop: DEVICE_HEIGHT / 14,
+        marginBottom: DEVICE_HEIGHT / 8,
+        fontStyle: 'italic'
+    },
     iconStyle: {
         width: 100,
         height: 100,
     },
     btnStyle: {
         backgroundColor: '#FFF',
-        height: height / 13,
-        width: width / 1.3,
+        height: DEVICE_HEIGHT / 13,
+        width: DEVICE_WIDTH / 1.3,
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center'
     },
     textBtnStyle: {
         fontSize: 30,
-        color: '#F66D6A'
+        color: APP_THEME
     }
 });

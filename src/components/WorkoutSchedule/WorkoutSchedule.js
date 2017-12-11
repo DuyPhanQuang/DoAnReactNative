@@ -23,15 +23,15 @@ export default class WorkoutSchedule extends Component {
           const numItems = Math.floor(Math.random() * 5);
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
+              name: `Item for ${strTime}`,
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
           }
         }
       }
-      //console.log(this.state.items);
+      // console.log(this.state.items);
       const newItems = {};
-      Object.keys(this.state.items).forEach(key => { newItems[key] = this.state.items[key]; });
+      Object.keys(this.state.items).forEach((key) => { newItems[key] = this.state.items[key]; });
       this.setState({
         items: newItems
       });
@@ -60,7 +60,7 @@ export default class WorkoutSchedule extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2017-05-16'}
+        selected="2017-05-16"
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
@@ -76,7 +76,7 @@ export default class WorkoutSchedule extends Component {
         //    '2017-05-26': {endingDay: true, color: 'gray'}}}
          // monthFormat={'yyyy'}
          // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+        // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
     );
   }

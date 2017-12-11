@@ -40,34 +40,40 @@ export default class VideoTraining extends Component {
 
     forward() {
         this.setState({
-            currentVideoIndex: this.state.currentVideoIndex + 1
+            currentVideoIndex: this.state.currentVideoIndex + 1,
+            canNext: false
         });
+        this.video.seek(0);
     }
 
     back() {
         this.setState({
             currentVideoIndex: this.state.currentVideoIndex - 1
         });
+        this.video.seek(0);
     }
 
     render() {
-        const { container, videoContainer, contentContainer, video, progressContainer,
-                text, videoTitle, nextVid, remainingTime  
+        const {
+            container, videoContainer, contentContainer, video, progressContainer, text, videoTitle, nextVid, remainingTime
         } = styles;
-        const { canNext, currentVideoIndex, totalVideo, vids, duration, progress
+        const {
+            canNext, currentVideoIndex, totalVideo,
+            vids, duration, progress
         } = this.state;
         return (
             <View style={container}>
                 <View style={videoContainer}>
-                   <Video 
+                    <Video
+                      ref={(ref) => { this.video = ref; }}
                       source={{ uri: vids[currentVideoIndex].uri }}
                       style={video}
-                      resizeMode='cover'
+                      resizeMode="cover"
                       onProgress={prog =>
                         this.setState({ progress: Math.round(prog.currentTime) })}
                       onLoad={data => this.onLoadVideo(data)}
                       onEnd={() => this.setState({ canNext: true })}
-                   />
+                    />
                 </View>
                 <View style={contentContainer}>
                     <View style={progressContainer}>
@@ -75,8 +81,8 @@ export default class VideoTraining extends Component {
                           disabled={currentVideoIndex === 0}
                           onPress={this.back}
                         >
-                            <Icon 
-                              name='navigate-before'
+                            <Icon
+                              name="navigate-before"
                               size={45}
                               color={currentVideoIndex !== 0 ? APP_THEME : 'gray'}
                             />
@@ -87,14 +93,16 @@ export default class VideoTraining extends Component {
                               width={5}
                               fill={Math.round(progress / duration * 100)}
                               tintColor={APP_THEME}
-                              backgroundColor='gray'
+                              backgroundColor="gray"
                               rotation={360}
                             >
                                 {
                                     fill => (
-                                        <Text style={remainingTime}>{ duration - progress }</Text>
+                                        <Text style={remainingTime}>
+                                            { duration - progress }
+                                        </Text>
                                     )
-                                }    
+                                }
                             </AnimatedCircularProgress>
                         </View>
                         <TouchableOpacity
@@ -102,14 +110,16 @@ export default class VideoTraining extends Component {
                           onPress={this.forward}
                         >
                             <Icon
-                              name='navigate-next'
+                              name="navigate-next"
                               size={45}
                               color={canNext ? APP_THEME : 'gray'}
                             />
                         </TouchableOpacity>
                     </View>
                     <View style={text}>
-                        <Text style={videoTitle}>{ vids[currentVideoIndex].title }</Text>
+                        <Text style={videoTitle}>
+                            {vids[currentVideoIndex].title}
+                        </Text>
                         <Text style={nextVid}>
                         {
                             currentVideoIndex + 1 === vids.length
@@ -121,19 +131,19 @@ export default class VideoTraining extends Component {
                     </View>
                     <View>
                         <Progress.Bar
-                            width={DEVICE_WIDTH}
-                            height={DEVICE_HEIGHT / 20}
-                            borderRadius={0}
-                            color={APP_THEME}
-                            progress={(currentVideoIndex + 1) / totalVideo}
-                            unfilledColor="#FCE4EC"
+                          width={DEVICE_WIDTH}
+                          height={DEVICE_HEIGHT / 20}
+                          borderRadius={0}
+                          color={APP_THEME}
+                          progress={(currentVideoIndex + 1) / totalVideo}
+                          unfilledColor="#FCE4EC"
                         />
                     </View>
                 </View>
             </View>
         );
     }
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -142,8 +152,7 @@ const styles = StyleSheet.create({
     videoContainer: {
         flex: 2,
         backgroundColor: '#000',
-        width: DEVICE_WIDTH,
-        padding: -5,
+        width: DEVICE_WIDTH
     },
     contentContainer: {
         flex: 3,

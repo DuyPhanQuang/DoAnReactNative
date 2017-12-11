@@ -1,48 +1,48 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput,
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput,
 } from 'react-native';
 import icSignInBG from '../../Media/appicon/ic_loginbg.png';
 import icSignInLock from '../../Media/appicon/ic_loginlock.png';
 import icSignInPerson from '../../Media/appicon/ic_loginperson.png';
 import icApp from '../../Media/appicon/ic_app.png';
-
-const { width, height } = Dimensions.get('window');
+import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
+import { APP_THEME } from '../Constants/Color';
 
 
 export default class SignIn extends Component {
     render() {
-        const { background, logoWrap, logo, wrapper, inputWrap, iconWrap, input, icon, 
-               forgotPasswordText, button, buttonText, container, signupWrap,
-               accountText, signupLinkText 
+        const {
+            background, logoWrap, logo, wrapper, inputWrap, iconWrap, input, icon, forgotPasswordText, button, buttonText, container, signupWrap,
+            accountText, signupLinkText
         } = styles;
         return (
             <View style={container} >
-                <Image source={icSignInBG} style={background} resizeMode='cover' >
+                <Image source={icSignInBG} style={background} resizeMode="cover" >
                     <View style={logoWrap} >
-                        <Image source={icApp} style={logo} resizeMode='contain' />
+                        <Image source={icApp} style={logo} resizeMode="contain" />
                     </View>
                     <View style={wrapper} >
                         <View style={inputWrap} >
                             <View style={iconWrap} >
-                                <Image source={icSignInPerson} style={icon} resizeMode='contain' /> 
+                                <Image source={icSignInPerson} style={icon} resizeMode="contain" />
                             </View>
-                            <TextInput 
-                                placeholder='Username'
-                                placeholderTextColor='#FFF'
-                                style={input}
-                                underlineColorAndroid='transparent'
+                            <TextInput
+                              placeholder="Username"
+                              placeholderTextColor="#FFF"
+                              style={input}
+                              underlineColorAndroid="transparent"
                             />
                         </View>
                         <View style={inputWrap} >
                             <View style={iconWrap} >
-                                <Image source={icSignInLock} style={icon} resizeMode='contain' />
+                                <Image source={icSignInLock} style={icon} resizeMode="contain" />
                             </View>
                             <TextInput
-                                placeholder='Password'
-                                placeholderTextColor='#FFF'
-                                style={input}
-                                underlineColorAndroid='transparent'
-                                secureTextEntry
+                              placeholder="Password"
+                              placeholderTextColor="#FFF"
+                              style={input}
+                              underlineColorAndroid="transparent"
+                              secureTextEntry
                             />
                         </View>
                         <TouchableOpacity activeOpacity={0.5} >
@@ -67,7 +67,7 @@ export default class SignIn extends Component {
                         </View>
                     </View>
                 </Image>
-            </View>     
+            </View>
         );
     }
 }
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     background: {
-        width,
-        height,
+        width: DEVICE_WIDTH,
+        height: DEVICE_HEIGHT,
     },
     logoWrap: {
         flex: 4,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         paddingVertical: 50
-        
+
     },
     inputWrap: {
         flexDirection: 'row',
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     button: {
-        backgroundColor: '#F66D6A',
+        backgroundColor: APP_THEME,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
