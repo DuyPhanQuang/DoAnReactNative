@@ -196,7 +196,7 @@ export default class PrepareRunScreen extends React.Component {
                         width: DEVICE_WIDTH * 0.75
                         }}
                       content="START RUNNING"
-                      onPress={() => this.props.navigation.navigate('RunningScreen', { ...this.state })}
+                      onPress={() => this.props.navigation.navigate('ManHinh_Running', { ...this.state })}
                       disable={this.state.disable}
                     />
                 </View>

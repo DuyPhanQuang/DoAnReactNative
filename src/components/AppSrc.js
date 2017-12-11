@@ -3,7 +3,6 @@ import { StatusBar } from 'react-native';
 
 import { SideMenu } from './Router';
 // import FunctionBar from './Main/Fitness/FunctionBar';
-import TrainingExerciseOne from './Main/Training/TrainingExOne/TrainingExerciseOne';
 import SignInTwo from './Authentication/SignIn/SignInTwo';
 import SignUpTwo from './Authentication/SignUp/SignUpTwo';
 import ShowInfo from './Main/ShowInfo';

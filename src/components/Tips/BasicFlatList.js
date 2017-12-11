@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, RefreshControl } from 'react-native';
 // import flatListData from './flatListData';
-import FlatListItem from './FlatListItem';
+import TipsItem from './TipsItem';
 import { getTipsFromServer } from '../../../networking/Server';
 
 export default class BasicFlatList extends Component {
@@ -43,7 +43,7 @@ export default class BasicFlatList extends Component {
                       renderItem={({ item, index }) =>
                         // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
                          (
-                        <FlatListItem item={item} index={index} />)
+                        <TipsItem item={item} index={index} />)
                     }
                       keyExtractor={(item, index) => item.Id}
                       refreshControl={

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import MainNavigator from './router/Router';
+import { RunTrackerStack } from '../Router';
 
-export default class Main extends Component {
+export default class RunTracker extends Component {
     render() {
         return (
             // <PrepareRunContainer />
             // <PrepareRunScreen />
-            <MainNavigator />
+            <RunTrackerStack />
         );
     }
 }

@@ -37,19 +37,21 @@ export default class FunctionBar extends Component {
 
     render() {
         const {
- container, progress, one, two, three, text, img
-} = styles;
+            container, progress, one, two, three, text, img
+        } = styles;
         return (
             <View style={container}>
-                    <View style={one}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                        <Image
-                          source={trackIcon}
-                          style={img}
-                        />
-                        </TouchableOpacity>
-                        <Text style={text}>Track {'\n'} Run</Text>
-                    </View>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={this.props.onRunTrackerPress}
+                  style={one}
+                >
+                    <Image
+                      source={trackIcon}
+                      style={img}
+                    />
+                    <Text style={text}>Run{'\n'}Tracker</Text>
+                </TouchableOpacity>
 
                 <View style={two}>
                     <Progress.Circle
@@ -64,16 +66,13 @@ export default class FunctionBar extends Component {
                     <Text style={text}>Progress</Text>
                 </View>
 
-                    <View style={three}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                        <Image
-                          source={balanceIcon}
-                          style={img}
-                        />
-                        </TouchableOpacity>
-                        <Text style={text}>  Your {'\n'}Weight</Text>
-                    </View>
-
+                <TouchableOpacity activeOpacity={0.5} style={three}>
+                    <Image
+                      source={balanceIcon}
+                      style={img}
+                    />
+                    <Text style={text}>Your{'\n'}Weight</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -118,5 +117,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: '#FFF',
+        textAlign: 'center'
     }
 });

@@ -53,10 +53,12 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     three: {
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
         color: '#FFF',
-        marginBottom: 100
+        marginTop: DEVICE_HEIGHT / 14,
+        marginBottom: DEVICE_HEIGHT / 8,
+        fontStyle: 'italic'
     },
     iconStyle: {
         width: 100,

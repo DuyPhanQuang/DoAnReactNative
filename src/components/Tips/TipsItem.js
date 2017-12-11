@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { APP_THEME } from '../Constants/AppConstants';
 
-export default class FlatListItem extends Component {
+export default class TipsItem extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>

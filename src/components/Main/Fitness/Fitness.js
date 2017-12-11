@@ -8,18 +8,19 @@ import StartComponent from './StartComponent';
 
 export default class Fitness extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         const { wrapper } = styles;
         return (
             <View style={{ flex: 1, backgroundColor: APP_THEME }}>
                 {/* dat props onOpen */}
-                <Header onOpen={() => { this.props.navigation.navigate('DrawerOpen'); }} />
-                <FunctionBar />
+                <Header onOpen={() => { navigate('DrawerOpen'); }} />
+                <FunctionBar onRunTrackerPress={() => navigate('ManHinh_RunTracker')} />
                 <View style={wrapper}>
                     <View style={{ flex: 1, justifyContent: 'center' }}>
                         {/* <StartComponent
                             onPress={() => alert("ccc")}
                         /> */}
-                        <StartComponent />
+                        <StartComponent onPress={() => navigate('ManHinh_VideoTraining')} />
                     </View>
                 </View>
             </View>

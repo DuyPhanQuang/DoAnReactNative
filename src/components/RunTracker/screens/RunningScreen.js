@@ -35,7 +35,7 @@ export default class RunningScreen extends React.Component {
         stats: {
             distance: 0,
             speed: 0,
-            steps: 0,
+            pace: 0,
             duration: '00:00',
             calories: 0
         },
@@ -113,7 +113,7 @@ export default class RunningScreen extends React.Component {
             speedData
         } = this.state;
         this.props.navigation.navigate(
-            'ResultScreen',
+            'ManHinh_Result',
             {
                 stats,
                 routeCoordinates,
@@ -178,9 +178,9 @@ export default class RunningScreen extends React.Component {
                 unit: 'cal',
             },
             {
-                title: 'Steps',
-                curValue: stats.steps,
-                unit: 'step'
+                title: 'Pace',
+                curValue: stats.pace,
+                unit: 'min/km'
             },
             {
                 title: 'Speed (m/s)',
