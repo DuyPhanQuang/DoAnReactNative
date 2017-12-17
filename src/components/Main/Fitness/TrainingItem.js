@@ -41,7 +41,10 @@ export default class TrainingItem extends Component {
                             </View>
                         </View>
                         <View >
-                            <TouchableOpacity activeOpacity={0.5} >
+                            <TouchableOpacity 
+                            activeOpacity={0.5}
+                            onPress={() => alert(item.Note)} 
+                            >
                                 <Image
                                   source={icInfo}
                                   style={icon}

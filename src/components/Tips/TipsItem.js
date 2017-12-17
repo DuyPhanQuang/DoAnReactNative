@@ -7,7 +7,10 @@ export default class TipsItem extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <TouchableOpacity activeOpacity={0.5}>
+                <TouchableOpacity 
+                  activeOpacity={0.5}
+                  onPress={this.props.onShow}
+                >
                 <View
                   style={{
                         flex: 1,
@@ -17,16 +20,19 @@ export default class TipsItem extends Component {
                         paddingTop: 5
                     }}
                 >
-                    <Image
+                    {/* <Image
                       source={{ uri: `http://${this.props.item.imageURL}` }}
                       style={{ width: 100, height: 100, margin: 5 }}
-                    />
+                    /> */}
+                    <View style={{ margin: 5, width: 80, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#F66D6A', fontSize: 25, fontWeight: '500' }}>{this.props.index}</Text>
+                    </View>
                     <View style={{ flex: 1, }}>
                         <Text style={styles.title}>{this.props.item.Name}</Text>
                         <Text style={styles.textContent}>{this.props.item.NoiDung}</Text>
                     </View>
                     <View style={{ justifyContent: 'center', }}>
-                    <Icon name="chevron-right" size={80} color={APP_THEME} />
+                    <Icon name="chevron-right" size={60} color={APP_THEME} />
                     </View>
 
                 </View>
@@ -39,11 +45,11 @@ export default class TipsItem extends Component {
 }
 const styles = StyleSheet.create({
     title: {
-        fontSize: 25,
+        color: '#F66D6A',
+        fontSize: 22,
         fontWeight: 'bold',
     },
     textContent: {
-        color: '#000',
         padding: 10,
         fontSize: 16,
     }

@@ -11,9 +11,10 @@ import RateTheApp from './RateTheApp/RateTheApp';
 import WorkoutSchedule from './WorkoutSchedule/WorkoutSchedule';
 // StatusBar.setHidden(true);
 import BasicFlatList from './Tips/BasicFlatList';
-import Description from './Tips/Description';
 import StartComponent from './Main/Fitness/StartComponent';
 import VideoTraining from './VideoTraining/VideoTraining';
+import TipOne from './Tips/DetailTips/TipOne';
+import MainExercises from './Exercises/MainExercises';
 
 export default class AppSrc extends Component {
     render() {
@@ -21,8 +22,10 @@ export default class AppSrc extends Component {
             // <VideoTraining />
             // <StartComponent />
             // <BasicFlatList />
-            // <SideMenu />
-            <Description />
+            <SideMenu />
+            // <MainExercises />
+            // <TipOne />
+            // <Description />
             // <WorkoutSchedule />
             // <RateTheApp />
             // <Support />

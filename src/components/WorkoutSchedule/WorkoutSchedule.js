@@ -60,22 +60,22 @@ export default class WorkoutSchedule extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected="2017-05-16"
+        selected="2017-11-26"
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
         // markingType={'period'}
         // markedDates={{
-        //    '2017-05-08': {textColor: '#666'},
-        //    '2017-05-09': {textColor: '#666'},
-        //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
-        //    '2017-05-21': {startingDay: true, color: 'blue'},
-        //    '2017-05-22': {endingDay: true, color: 'gray'},
-        //    '2017-05-24': {startingDay: true, color: 'gray'},
-        //    '2017-05-25': {color: 'gray'},
-        //    '2017-05-26': {endingDay: true, color: 'gray'}}}
-         // monthFormat={'yyyy'}
-         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+        //    '2017-11-08': {textColor: '#666'},
+        //    '2017-11-09': {textColor: '#666'},
+        //    '2017-11-14': {startingDay: true, endingDay: true, color: 'blue'},
+        //    '2017-11-21': {startingDay: true, color: 'blue'},
+        //    '2017-11-22': {endingDay: true, color: 'gray'},
+        //    '2017-11-24': {startingDay: true, color: 'gray'},
+        //    '2017-11-25': {color: 'gray'},
+        //    '2017-11-26': {endingDay: true, color: 'gray'}}}
+        //  monthFormat={'yyyy'}
+        //  theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
         // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
     );
@@ -84,7 +84,7 @@ export default class WorkoutSchedule extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
+    backgroundColor: '#F66D6A',
     flex: 1,
     borderRadius: 5,
     padding: 10,

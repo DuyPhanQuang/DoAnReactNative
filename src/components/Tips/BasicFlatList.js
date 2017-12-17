@@ -34,6 +34,7 @@ export default class BasicFlatList extends Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 2 }} />
@@ -43,8 +44,13 @@ export default class BasicFlatList extends Component {
                       renderItem={({ item, index }) =>
                         // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
                          (
-                        <TipsItem item={item} index={index} />)
-                    }
+                        <TipsItem 
+                          item={item} 
+                          index={index + 1}
+                          onShow={() => { navigate('ManHinh_TipOne'); }}
+                          />
+                         )
+                      }
                       keyExtractor={(item, index) => item.Id}
                       refreshControl={
                         <RefreshControl

@@ -15,14 +15,18 @@ export default class Header extends Component {
       <View style={wrapper}>
         <View style={rowHeader}>
             <TouchableOpacity
+              activeOpacity={0.5}
               onPress={this.props.onOpen}
             >
                 <Image source={icMenu} style={iconStyle} />
             </TouchableOpacity>
 
-            <Text style={titleHeader} >Weight Loss Fitness</Text>
+            <Text style={titleHeader} >Fitness For Weight Loss</Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={this.props.onOpenCalendar}
+            >
             <Image source={icCalendar} style={iconStyle} />
             </TouchableOpacity>
         </View>

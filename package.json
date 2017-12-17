@@ -18,6 +18,7 @@
 		"react-native-circular-progress": "^0.1.0",
 		"react-native-clean-project": "^1.0.4",
 		"react-native-elements": "^0.18.4",
+		"react-native-htmlview": "^0.12.1",
 		"react-native-maps": "^0.18.3",
 		"react-native-progress": "^3.4.0",
 		"react-native-render-html": "^3.5.2",

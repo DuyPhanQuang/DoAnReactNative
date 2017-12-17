@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
-import { Easing, Animated } from 'react-native';
+import { Easing, Animated, Image, StyleSheet } from 'react-native';
 import Main from './Main/Main';
 import Fitness from './Main/Fitness/Fitness';
 import Menu from './Main/Menu';
@@ -22,6 +22,10 @@ import VideoTraining from './VideoTraining/VideoTraining';
 import PrepareRunScreen from './RunTracker/screens/PrepareRunScreen';
 import RunningScreen from './RunTracker/screens/RunningScreen';
 import ResultScreen from './RunTracker/screens/ResultScreen';
+import BasicFlatList from './Tips/BasicFlatList';
+import TipsItem from './Tips/TipsItem';
+import TipOne from './Tips/DetailTips/TipOne';
+import { DEVICE_HEIGHT } from './Constants/AppConstants';
 
 export const MainStack = StackNavigator({
     ManHinh_StepOne: {
@@ -57,7 +61,8 @@ export const MainStack = StackNavigator({
     ManHinh_WorkoutSchedule: {
         screen: WorkoutSchedule,
         navigationOptions: {
-
+            title: 'Workout Schedule',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_MyWeight: {
@@ -73,7 +78,8 @@ export const MainStack = StackNavigator({
     ManHinh_RateTheApp: {
         screen: RateTheApp,
         navigationOptions: {
-
+            title: 'Rate the app! Please 5 stars ^_^',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_Support: {
@@ -97,13 +103,32 @@ export const MainStack = StackNavigator({
     ManHinh_MainExercises: {
         screen: MainExercises,
         navigationOptions: {
-            header: null
+            title: 'Exercises',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_VideoTraining: {
         screen: VideoTraining,
         navigationOptions: {
-            title: 'Fitness for WeightLoss'
+            title: 'Fitness for WeightLoss',
+            headerTintColor: '#F66D6A',
+        }
+    },
+    ManHinh_BasicFlatList: {
+        screen: BasicFlatList,
+        navigationOptions: {
+            title: 'Tips for all weight loss',
+            headerTintColor: '#F66D6A',
+        }
+    },
+    ManHinh_TipsItem: {
+        screen: TipsItem
+    },
+    ManHinh_TipOne: {
+        screen: TipOne,
+        navigationOptions: {
+            title: 'Details tips',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_RunTracker: { screen: PrepareRunScreen },
@@ -114,6 +139,13 @@ export const ExercisesFullBodyStack = StackNavigator({
     ManHinh_FullBody: {
         screen: ExercisesFullBody,
         navigationOptions: {
+            tabBarIcon: ({ tintColor }) => (
+                <Image 
+                    source={require('../Media/appicon/ic_fullbody.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+            
         }
     }
 });
@@ -121,7 +153,12 @@ export const ExercisesUpperBodyStack = StackNavigator({
     ManHinh_UpperBody: {
         screen: ExercisesUpperBody,
         navigationOptions: {
-
+            tabBarIcon: ({ tintColor }) => (
+                <Image 
+                    source={require('../Media/appicon/ic_topbody.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
         }
     }
 });
@@ -129,7 +166,12 @@ export const ExercisesMiddleBodyStack = StackNavigator({
     ManHinh_MiddleBody: {
         screen: ExercisesMiddleBody,
         navigationOptions: {
-
+            tabBarIcon: ({ tintColor }) => (
+                <Image 
+                    source={require('../Media/appicon/ic_middlebody.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
         }
     }
 });
@@ -137,7 +179,12 @@ export const ExercisesLowerBodyStack = StackNavigator({
     ManHinh_LowerBody: {
         screen: ExercisesLowerBody,
         navigationOptions: {
-
+            tabBarIcon: ({ tintColor }) => (
+                <Image 
+                    source={require('../Media/appicon/ic_lowerbody.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
         }
     }
 });
@@ -147,34 +194,45 @@ export const ExercisesTab = TabNavigator({
     FullBody: {
         screen: ExercisesFullBodyStack,
         navigationOptions: {
-
+            tabBarLabel: 'Full body',
         }
     },
     UpperBody: {
         screen: ExercisesUpperBodyStack,
         navigationOptions: {
-
+            tabBarLabel: 'Top body'
         }
     },
-    MiddleBody: {
+    MidBody: {
         screen: ExercisesMiddleBodyStack,
         navigationOptions: {
-
+            tabBarLabel: 'Mid body'
         }
     },
     LowerBody: {
         screen: ExercisesLowerBodyStack,
         navigationOptions: {
-
+            tabBarLabel: 'Bottom body'
         }
     }
 }, {
-    tabBarPosition: 'top',
+    tabBarPosition: 'bottom',
     swipeEnabled: true,
     tabBarOptions: {
         style: {
-            backgroundColor: '#dddddd'
-        }
+            backgroundColor: '#F66D6A'
+        },
+        labelStyle: {
+            fontSize: 12,
+            fontWeight: 'bold'
+        },
+        tabStyle: {
+            height: DEVICE_HEIGHT / 11
+        },
+        activeTintColor: '#FFBF57',
+        showIcon: true,
+        upperCaseLabel: false,
+        pressColor: '#FFBF57'
     },
 
 });
@@ -191,6 +249,12 @@ export const SideMenu = DrawerNavigator({
     contentComponent: props => <Menu {...props} />
 });
 
+const styles = StyleSheet.create({
+    icon: {
+        width: 20,
+        height: 20,
+    }
+});
 // export const RunTrackerStack = StackNavigator(
 //     {
 //         PrepareRunScreen: { screen: PrepareRunScreen },

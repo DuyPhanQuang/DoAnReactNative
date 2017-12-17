@@ -133,7 +133,7 @@ export default class PrepareRunScreen extends React.Component {
                     <Picker
                       prompt="Select your target:"
                       selectedValue={this.state.targetUnit}
-                      style={{ height: 35, width: 190, marginBottom: 20 }}
+                      style={{ height: 35, width: 200, marginBottom: 20 }}
                       mode="dropdown"
                       onValueChange={value => this.onPickerValueChange(value)}
                     >

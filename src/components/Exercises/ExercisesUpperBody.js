@@ -4,7 +4,7 @@ import { View , Text } from 'react-native';
 export default class ExercisesUpperBody extends Component {
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#FFF' }}>
                 <Text>UpperBody component</Text>
             </View>
         );

@@ -48,7 +48,10 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={btnStyleAfter}>
+                    <TouchableOpacity
+                      onPress={() => { this.props.navigation.navigate('ManHinh_WorkoutSchedule'); }} 
+                      style={btnStyleAfter}
+                    >
                         <View style={menuStyle}>
                             <Image source={icWorkoutSchedule} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >Workout Schedule</Text>
@@ -60,7 +63,10 @@ export default class Menu extends Component {
                             <Text style={btnTextStyleAfter} >My Weight</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnStyleAfter}>
+                    <TouchableOpacity 
+                      onPress={() => { this.props.navigation.navigate('ManHinh_BasicFlatList'); }}
+                      style={btnStyleAfter}
+                    >
                         <View style={menuStyle}>
                             <Image source={icTips} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >Tips</Text>
@@ -81,7 +87,10 @@ export default class Menu extends Component {
                             <Text style={btnTextStyleAfter} >Settings</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnStyleAfter}>
+                    <TouchableOpacity 
+                      style={btnStyleAfter}
+                      onPress={() => { this.props.navigation.navigate('ManHinh_RateTheApp'); }}
+                    >
                         <View style={menuStyle}>
                             <Image source={icRateTheApp} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >Rate the App</Text>

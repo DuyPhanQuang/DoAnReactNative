@@ -12,7 +12,10 @@ export default class Fitness extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: APP_THEME }}>
                 {/* dat props onOpen */}
-                <Header onOpen={() => { navigate('DrawerOpen'); }} />
+                <Header 
+                  onOpen={() => { navigate('DrawerOpen'); }} 
+                  onOpenCalendar={() => { navigate('ManHinh_WorkoutSchedule'); }}
+                />
                 <FunctionBar onRunTrackerPress={() => navigate('ManHinh_RunTracker')} />
                 <View style={wrapper}>
                     <View style={{ flex: 1, justifyContent: 'center' }}>
