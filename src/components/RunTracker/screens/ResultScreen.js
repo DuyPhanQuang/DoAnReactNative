@@ -27,19 +27,39 @@ export default class ResultScreen extends Component {
         super(props);
         const today = moment().format('ddd, MMM D, YYYY - HH:mm');
         this.setState({ today });
+        const { speedData } = this.props.navigation.state.params;
+        this.setState({ maxSpeed: Math.max(speedData) });
+        this.setState({ avgSpeed: +((speedData.reduce((sum, e) => sum + e, 0) / speedData.length).toFixed(2)) });
     }
 
     state = {
-        today: ''
+        today: '',
+        maxSpeed: 0,
+        avgSpeed: 0
     }
 
     render() {
         const {
-            routeCoordinates,
+            // routeCoordinates,
             startLocation,
             stopLocation,
             stats
          } = this.props.navigation.state.params;
+        const routeCoordinates = [
+            {
+                latitude: 10.8840,
+                longitude: 106.782
+            },
+            {
+                latitude: 10.8844,
+                longitude: 106.782
+            },
+            {
+                latitude: 10.8844,
+                longitude: 106.786
+            }
+        ];
+
         const {
             overview,
             row,
@@ -111,7 +131,11 @@ export default class ResultScreen extends Component {
                           value={stats.duration}
                           unit="min"
                         >
-                            <Material name="timer" size={40} color={WORKOUT_DETAIL_COLOR} />
+                            <Material
+                              name="timer"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
 
                         <WODItem
@@ -119,7 +143,11 @@ export default class ResultScreen extends Component {
                           value={stats.distance}
                           unit="m"
                         >
-                            <Material name="run" size={40} color={WORKOUT_DETAIL_COLOR} />
+                            <Material
+                              name="run"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
                     </View>
                     <View style={row}>
@@ -128,23 +156,46 @@ export default class ResultScreen extends Component {
                           value={stats.calories}
                           unit="cal"
                         >
-                            <Simple name="fire" size={40} color={WORKOUT_DETAIL_COLOR} />
+                            <Simple
+                              name="fire"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
-
                         <WODItem
                           title="Steps"
                           value={stats.steps}
                           unit=""
                         >
-                            <Foundation name="foot" size={40} color={WORKOUT_DETAIL_COLOR} />
+                            <Foundation
+                              name="foot"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
                     </View>
                     <View style={row}>
-                        <WODItem title="Avg Speed" value="2" unit="m/s">
-                            <Simple name="speedometer" size={40} color={WORKOUT_DETAIL_COLOR} />
+                        <WODItem
+                          title="Avg Speed"
+                          value={this.state.avgSpeed}
+                          unit="m/s"
+                        >
+                            <Simple
+                              name="speedometer"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
-                        <WODItem title="Max Speed" value="4" unit="m/s">
-                            <Material name="speedometer" size={40} color={WORKOUT_DETAIL_COLOR} />
+                        <WODItem
+                          title="Max Speed"
+                          value={this.state.maxSpeed}
+                          unit="m/s"
+                        >
+                            <Material
+                              name="speedometer"
+                              size={40}
+                              color={WORKOUT_DETAIL_COLOR}
+                            />
                         </WODItem>
                     </View>
                 </View>
@@ -179,5 +230,21 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         alignSelf: 'stretch',
         marginHorizontal: 60
+    },
+    param: {
+        height: DEVICE_HEIGHT * 0.2,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    data: {
+        flexDirection: 'column',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    dataText: {
+        fontSize: 18,
+        color: 'black'
     }
 });

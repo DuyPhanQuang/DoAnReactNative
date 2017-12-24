@@ -5,6 +5,10 @@ export function calSpeed(distance, cur, prev) {
     return +((distance / (cur - prev)).toFixed(2));
 }
 
+export function calPace(speed) {
+    return (1 / speed) / 60 * 1000;
+}
+
 export function calDistance(prevLatLng, newLatLng) {
     return round(haversine(prevLatLng, newLatLng) * 1000);
 }
