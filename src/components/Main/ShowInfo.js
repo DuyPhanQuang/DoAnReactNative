@@ -44,10 +44,11 @@ export default class ShowInfo extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#ECECEC'
     },
     litleContainer: {
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#ECECEC',
         flexDirection: 'row',
         marginVertical: 15,
         marginHorizontal: 10,

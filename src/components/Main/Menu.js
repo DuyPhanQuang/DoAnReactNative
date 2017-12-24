@@ -25,6 +25,7 @@ export default class Menu extends Component {
             container, btnStyle, btnTextStyle, btnStyleAfter,
             btnTextStyleAfter, logInStyle, iconStyle, menuStyle
         } = styles;
+        const { navigate } = this.props.navigation;
         const logOutJSX = (
             <View style={{ flex: 1 }}>
             <TouchableOpacity
@@ -39,7 +40,7 @@ export default class Menu extends Component {
             <View style={logInStyle} >
 
                     <TouchableOpacity
-                      onPress={() => { this.props.navigation.navigate('ManHinh_Home'); }}
+                      onPress={() => { navigate('ManHinh_Home'); }}
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -49,7 +50,7 @@ export default class Menu extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      onPress={() => { this.props.navigation.navigate('ManHinh_WorkoutSchedule'); }} 
+                      onPress={() => { navigate('ManHinh_WorkoutSchedule'); }} 
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -57,14 +58,17 @@ export default class Menu extends Component {
                             <Text style={btnTextStyleAfter} >Workout Schedule</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnStyleAfter}>
+                    <TouchableOpacity 
+                      onPress={() => { navigate('ManHinh_MyWeight'); }}
+                      style={btnStyleAfter}
+                    >
                         <View style={menuStyle}>
                             <Image source={icMyWeight} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >My Weight</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                      onPress={() => { this.props.navigation.navigate('ManHinh_BasicFlatList'); }}
+                      onPress={() => { navigate('ManHinh_BasicFlatList'); }}
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -73,7 +77,7 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      onPress={() => { this.props.navigation.navigate('ManHinh_MainExercises'); }}
+                      onPress={() => { navigate('ManHinh_MainExercises'); }}
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -89,14 +93,17 @@ export default class Menu extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                       style={btnStyleAfter}
-                      onPress={() => { this.props.navigation.navigate('ManHinh_RateTheApp'); }}
+                      onPress={() => { navigate('ManHinh_RateTheApp'); }}
                     >
                         <View style={menuStyle}>
                             <Image source={icRateTheApp} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >Rate the App</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={btnStyleAfter}>
+                    <TouchableOpacity
+                      onPress={() => { navigate('ManHinh_Support'); }} 
+                      style={btnStyleAfter}
+                    >
                         <View style={menuStyle}>
                             <Image source={icSupport} style={iconStyle} />
                             <Text style={btnTextStyleAfter} >Support</Text>
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // flexDirection: 'row',
-
+        backgroundColor: '#ECECEC'
     },
     menuStyle: {
         flex: 1,
@@ -174,6 +181,7 @@ const styles = StyleSheet.create({
     },
     logInStyle: {
         flex: 4,
+        backgroundColor: '#ECECEC',
         // flexDirection: 'column',
         marginTop: 10,
         borderTopWidth: 1,

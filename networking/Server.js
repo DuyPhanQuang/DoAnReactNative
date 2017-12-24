@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-const apiGetAllTips = 'http://192.168.1.103:3000/tips/';
-const apiGetAllAboutWeightLoss = 'http://192.168.1.103:3000/aboutweightloss';
-const apiGetAllTrainingData = 'http://192.168.1.103:3000/trainingdata';
-const apiGetAllExFullbody = 'http://192.168.1.103:3000/exfullbody';
-const apiGetAllExTopbody = 'http://192.168.1.103:3000/extopbody';
-const apiGetAllExMidbody = 'http://192.168.1.103:3000/exmidbody';
-const apiGetAllExBottombody = 'http://192.168.1.103:3000/exbottombody';
+const apiGetAllTips = 'http://10.0.137.5:3000/tips/';
+const apiGetAllAboutWeightLoss = 'http://10.0.137.5:3000/aboutweightloss';
+const apiGetAllTrainingData = 'http://10.0.137.5:3000/trainingdata';
+const apiGetAllExFullbody = 'http://10.0.137.5:3000/exfullbody';
+const apiGetAllExTopbody = 'http://10.0.137.5:3000/extopbody';
+const apiGetAllExMidbody = 'http://10.0.137.5:3000/exmidbody';
+const apiGetAllExBottombody = 'http://10.0.137.5:3000/exbottombody';
 
 async function getTipsFromServer() {
     try {

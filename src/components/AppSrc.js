@@ -15,6 +15,7 @@ import StartComponent from './Main/Fitness/StartComponent';
 import VideoTraining from './VideoTraining/VideoTraining';
 import TipOne from './Tips/DetailTips/TipOne';
 import MainExercises from './Exercises/MainExercises';
+import MyWeight from './MyWeight/MyWeight';
 
 export default class AppSrc extends Component {
     render() {

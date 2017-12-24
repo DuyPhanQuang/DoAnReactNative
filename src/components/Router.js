@@ -4,7 +4,6 @@ import { Easing, Animated, Image, StyleSheet } from 'react-native';
 import Main from './Main/Main';
 import Fitness from './Main/Fitness/Fitness';
 import Menu from './Main/Menu';
-import SignIn from './Authentication/SignIn';
 import ChangeInfo from './ChangeInfo/ChangeInfo';
 import Home from './Home/Home';
 import WorkoutSchedule from './WorkoutSchedule/WorkoutSchedule';
@@ -26,8 +25,18 @@ import BasicFlatList from './Tips/BasicFlatList';
 import TipsItem from './Tips/TipsItem';
 import TipOne from './Tips/DetailTips/TipOne';
 import { DEVICE_HEIGHT } from './Constants/AppConstants';
+import { BACKGROUND_TABBAR } from './Constants/Color';
+// import SignInTwo from './Authentication/SignIn/SignInTwo';
+import SignUpTwo from './Authentication/SignUp/SignUpTwo';
+import SignIn from './Authentication/SignIn';
 
 export const MainStack = StackNavigator({
+    ManHinh_SignIn: {
+        screen: SignIn,
+        navigationOptions: {
+            header: null
+        }
+    },
     ManHinh_StepOne: {
         screen: StepOne,
         navigationOptions: {
@@ -55,7 +64,8 @@ export const MainStack = StackNavigator({
     ManHinh_Home: {
         screen: Home,
         navigationOptions: {
-
+            title: 'Home',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_WorkoutSchedule: {
@@ -68,12 +78,16 @@ export const MainStack = StackNavigator({
     ManHinh_MyWeight: {
         screen: MyWeight,
         navigationOptions: {
-
+            title: 'Your Weight',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_Settings: {
         screen: Settings,
-
+        navigationOptions: {
+            title: 'Settings',
+            headerTintColor: '#F66D6A',
+        }   
     },
     ManHinh_RateTheApp: {
         screen: RateTheApp,
@@ -85,13 +99,15 @@ export const MainStack = StackNavigator({
     ManHinh_Support: {
         screen: Support,
         navigationOptions: {
-
+            title: 'Support',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_ChangeInfo: {
         screen: ChangeInfo,
         navigationOptions: {
-
+            title: 'Change your infomation',
+            headerTintColor: '#F66D6A',
         }
     },
     ManHinh_SignIn: {
@@ -145,6 +161,7 @@ export const ExercisesFullBodyStack = StackNavigator({
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
+            header: null
             
         }
     }
@@ -159,6 +176,7 @@ export const ExercisesUpperBodyStack = StackNavigator({
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
+            header: null
         }
     }
 });
@@ -172,6 +190,7 @@ export const ExercisesMiddleBodyStack = StackNavigator({
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
+            header: null
         }
     }
 });
@@ -185,6 +204,7 @@ export const ExercisesLowerBodyStack = StackNavigator({
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
+            header: null
         }
     }
 });
@@ -220,7 +240,7 @@ export const ExercisesTab = TabNavigator({
     swipeEnabled: true,
     tabBarOptions: {
         style: {
-            backgroundColor: '#F66D6A'
+            backgroundColor: BACKGROUND_TABBAR
         },
         labelStyle: {
             fontSize: 12,
@@ -229,10 +249,10 @@ export const ExercisesTab = TabNavigator({
         tabStyle: {
             height: DEVICE_HEIGHT / 11
         },
-        activeTintColor: '#FFBF57',
+        activeTintColor: '#F66D6A',
         showIcon: true,
         upperCaseLabel: false,
-        pressColor: '#FFBF57'
+        pressColor: '#F66D6A'
     },
 
 });
@@ -251,8 +271,8 @@ export const SideMenu = DrawerNavigator({
 
 const styles = StyleSheet.create({
     icon: {
-        width: 20,
-        height: 20,
+        width: 25,
+        height: 25,
     }
 });
 // export const RunTrackerStack = StackNavigator(

@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../../Constants/AppConstants';
 import { APP_THEME } from '../../Constants/Color';
 
 export default class ButtonSubmit extends Component {
+
+    // login = () => {
+    //     fetch('http://10.0.137.5:3000/api/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type' 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             username:
+    //         })
+    //     })
+    // }
     render() {
         const {
             container, buttonSubmit, text, buttonSkip
         } = styles;
         return (
             <View style={container}>
-                <TouchableOpacity activeOpacity={0.7} >
+                <TouchableOpacity 
+                  activeOpacity={0.7} 
+                >
                     <View style={buttonSubmit}>
                         <Text style={text}>Get Started</Text>
                     </View>

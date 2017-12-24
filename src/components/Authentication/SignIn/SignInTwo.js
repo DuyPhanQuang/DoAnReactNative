@@ -12,10 +12,11 @@ export default class SignInTwo extends Component {
             <BackgroundScreen>
                 <Logo />
                 <Form />
-                <View style={{ flex: 1 }}>
+                <Section />
+                {/* <View style={{ flex: 1 }}>
                     <ButtonSubmit />
-                    <Section />
-                </View>
+                    
+                </View> */}
             </BackgroundScreen>
         );
     }

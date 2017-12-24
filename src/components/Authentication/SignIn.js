@@ -1,149 +1,217 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput,
+import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity, 
+         KeyboardAvoidingView, TextInput, AsyncStorage
 } from 'react-native';
-import icSignInBG from '../../Media/appicon/ic_loginbg.png';
-import icSignInLock from '../../Media/appicon/ic_loginlock.png';
-import icSignInPerson from '../../Media/appicon/ic_loginperson.png';
-import icApp from '../../Media/appicon/ic_app.png';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 import { APP_THEME } from '../Constants/Color';
+// import signIn from '../../api/signIn';
 
+const background = require('../../Media/appicon/background1.jpg');
+const appIcon = require('../../Media/appicon/ic_app.png');
+const usernameIcon = require('../../Media/appicon/username.png');
+const passwordIcon = require('../../Media/appicon/password.png');
 
 export default class SignIn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+        };
+    }
+
+    componentDidMount() {
+        this._loadInitialState().done();
+    }
+
+    _loadInitialState = async () => {
+        var value = await AsyncStorage.getItem('users');
+        if (value !== null) {
+            this.props.navigation.navigate('ManHinh_StepOne');
+        }
+    }
+
+    login = () => {
+        fetch('http://192.168.1.44:3000/users', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: this.state.username,
+                password: this.state.password,
+            })
+        })
+        .then((response) => response.json())
+        .then((res) => {
+            if (res.success === true) {
+                AsyncStorage.setItem('users', res.users);
+                this.props.navigation.navigate('ManHinh_StepOne');
+            } else {
+                alert(res.message);
+            }
+        })
+        .done();
+    }
+
     render() {
-        const {
-            background, logoWrap, logo, wrapper, inputWrap, iconWrap, input, icon, forgotPasswordText, button, buttonText, container, signupWrap,
-            accountText, signupLinkText
-        } = styles;
+        const { username, password } = this.state;
         return (
-            <View style={container} >
-                <Image source={icSignInBG} style={background} resizeMode="cover" >
-                    <View style={logoWrap} >
-                        <Image source={icApp} style={logo} resizeMode="contain" />
+            <ImageBackground source={background} style={styles.imageBg} >
+                <View style={styles.container}>
+                    <View style={styles.wrapperLogo} >
+                        <Image
+                          source={appIcon}
+                          style={styles.logo}
+                        />
+                        <Text style={styles.title}>Fitness For</Text>
+                        <Text style={styles.subTitle}>WeightLoss</Text>
                     </View>
-                    <View style={wrapper} >
-                        <View style={inputWrap} >
-                            <View style={iconWrap} >
-                                <Image source={icSignInPerson} style={icon} resizeMode="contain" />
+                    <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
+                        <View style={styles.inputWrap}>
+                            <View style={styles.iconWrap}>
+                                <Image
+                                  source={usernameIcon}
+                                  style={styles.icon}
+                                />
                             </View>
                             <TextInput
                               placeholder="Username"
                               placeholderTextColor="#FFF"
-                              style={input}
+                              style={styles.input}
                               underlineColorAndroid="transparent"
+                            //   autoCapitalize="none"
+                            //   autoCorrect={false}
+                            //   returnKeyType="done"
+                              value={username}
+                              onChangeText={(username) => this.setState({ username })}
                             />
                         </View>
-                        <View style={inputWrap} >
-                            <View style={iconWrap} >
-                                <Image source={icSignInLock} style={icon} resizeMode="contain" />
+                        <View style={styles.inputWrap}>
+                            <View style={styles.iconWrap}>
+                                <Image
+                                  source={passwordIcon}
+                                  style={styles.icon}
+                                />
                             </View>
                             <TextInput
+                              secureTextEntry
                               placeholder="Password"
                               placeholderTextColor="#FFF"
-                              style={input}
+                              style={styles.input}
                               underlineColorAndroid="transparent"
-                              secureTextEntry
+                              autoCapitalize="none"
+                              autoCorrect={false}
+                              returnKeyType="done"
+                              value={password}
+                              onChangeText={(password) => this.setState({ password })}
                             />
                         </View>
-                        <TouchableOpacity activeOpacity={0.5} >
-                            <View>
-                                <Text style={forgotPasswordText} >Forgot password?</Text>
+                        <TouchableOpacity activeOpacity={0.7} onPress={this.logIn} >
+                            <View style={styles.buttonSubmit}>
+                                <Text style={styles.text}>Get Started</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5} >
-                            <View style={button} >
-                                <Text style={buttonText} >Sign In</Text>
-                            </View>
+                    </KeyboardAvoidingView>
+                    <View style={styles.wrapperSection}>
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonSection}>
+                            <Text style={styles.textSection}>Create Account</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonSection}>
+                            <Text style={styles.textSection}>Forgot Password?</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={container}>
-                        <View style={signupWrap} >
-                            <Text style={accountText} >Don't have an account?</Text>
-                            <TouchableOpacity activeOpacity={0.5} >
-                                <View>
-                                    <Text style={signupLinkText} >Sign Up</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Image>
-            </View>
+                </View>
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
-    background: {
-        width: DEVICE_WIDTH,
-        height: DEVICE_HEIGHT,
+    wrapperLogo: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    logoWrap: {
-        flex: 4,
-        paddingVertical: 50
+    wrapperForm: {
+        flex: 2,
+        alignItems: 'center',
+        // backgroundColor: '#FFF'
     },
-    logo: {
-        width: null,
-        height: null,
-        flex: 1
-    },
-    wrapper: {
-        paddingVertical: 50
-
+    wrapperSection: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
     inputWrap: {
         flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#CCC',
-        height: 80,
-        marginVertical: 10
-    },
-    iconWrap: {
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    icon: {
-        height: 20,
-        width: 20,
-       marginLeft: 10
+        marginVertical: 15,
+        borderRadius: 100,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        width: DEVICE_WIDTH - 100,
+        height: DEVICE_HEIGHT / 14
     },
     input: {
-        flex: 1,
+        width: DEVICE_WIDTH - 100,
+        height: DEVICE_HEIGHT / 14,
+        fontSize: 18,
+        color: '#FFF'
     },
-    forgotPasswordText: {
-        color: '#D8D8D8',
-        backgroundColor: 'transparent',
-        textAlign: 'right',
-        paddingRight: 15,
-        fontSize: 20,
-    },
-    button: {
+    buttonSubmit: {
+        width: DEVICE_WIDTH - 100,
+        height: DEVICE_HEIGHT / 14,
+        borderRadius: 100,
         backgroundColor: APP_THEME,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30,
-        paddingVertical: 30
-
     },
-    buttonText: {
-        color: '#FFF',
-        fontSize: 20,
-    },
-    signupWrap: {
-        flexDirection: 'row',
+    buttonSection: {
         backgroundColor: 'transparent',
+    },
+    iconWrap: {
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginHorizontal: 15,
     },
-    accountText: {
-        color: '#D8D8D8',
-        fontSize: 20
+    icon: {
+        width: 25,
+        height: 25,
     },
-    signupLinkText: {
+    imageBg: {
+        flex: 1,
+        width: null,
+        height: null,
+    },
+    logo: {
+        width: 120,
+        height: 120,
+        resizeMode: 'contain',
+    },
+    title: {
+        marginTop: 5,
+        fontSize: 50,
+        textAlign: 'center',
+        fontWeight: '700',
+        color: '#FFF'
+    },
+    subTitle: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight: 'normal',
+        color: '#FFF'
+    },
+    text: {
         color: '#FFF',
-        marginLeft: 7,
-        fontSize: 20
+        fontWeight: '300',
+        fontSize: 25,
+    },
+    textSection: {
+        color: '#FFF',
+        fontSize: 14,
+        fontWeight: '200'
     }
 });
