@@ -6,6 +6,8 @@ export function calSpeed(distance, cur, prev) {
 }
 
 export function calPace(speed) {
+    if (speed === 0)
+        return 0;
     return (1 / speed) / 60 * 1000;
 }
 
