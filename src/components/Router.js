@@ -31,12 +31,12 @@ import SignUpTwo from './Authentication/SignUp/SignUpTwo';
 import SignIn from './Authentication/SignIn';
 
 export const MainStack = StackNavigator({
-    ManHinh_SignIn: {
-        screen: SignIn,
-        navigationOptions: {
-            header: null
-        }
-    },
+    // ManHinh_SignIn: {
+    //     screen: SignIn,
+    //     navigationOptions: {
+    //         header: null
+    //     }
+    // },
     ManHinh_StepOne: {
         screen: StepOne,
         navigationOptions: {
@@ -108,12 +108,6 @@ export const MainStack = StackNavigator({
         navigationOptions: {
             title: 'Change your infomation',
             headerTintColor: '#F66D6A',
-        }
-    },
-    ManHinh_SignIn: {
-        screen: SignIn,
-        navigationOptions: {
-            header: null
         }
     },
     ManHinh_MainExercises: {

@@ -4,7 +4,8 @@ import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 import { APP_THEME } from '../Constants/Color';
-// import signIn from '../../api/signIn';
+import apiLogin from '../../api/signIn';
+import Toast, {DURATION} from 'react-native-easy-toast';
 
 const background = require('../../Media/appicon/background1.jpg');
 const appIcon = require('../../Media/appicon/ic_app.png');
@@ -15,48 +16,51 @@ export default class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
+            Email: '',
+            Password: '',
         };
+        this.actionnn = this.actionnn.bind(this);
     }
 
-    componentDidMount() {
-        this._loadInitialState().done();
+    // componentDidMount() {
+    //     this.actionnn();
+    // }
+
+    validateEmail(Email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(Email.toLowerCase());
     }
 
-    _loadInitialState = async () => {
-        var value = await AsyncStorage.getItem('users');
-        if (value !== null) {
-            this.props.navigation.navigate('ManHinh_StepOne');
-        }
-    }
-
-    login = () => {
-        fetch('http://192.168.1.44:3000/users', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: this.state.username,
-                password: this.state.password,
-            })
-        })
-        .then((response) => response.json())
-        .then((res) => {
-            if (res.success === true) {
-                AsyncStorage.setItem('users', res.users);
-                this.props.navigation.navigate('ManHinh_StepOne');
-            } else {
-                alert(res.message);
+    actionnn =  async () => {
+            if(this.state.Email = '')
+            {
+                this.refs.toast.show('Please enter email and password', 1000);
+                return;
             }
-        })
-        .done();
+            if(!this.validateEmail(this.state.Email))
+            {
+                this.refs.toast.show('Email is invalid', 1000);
+                return;
+            }
+            try {
+               var res = await apiLogin.Login(this.state.Email, this.state.Password).data;
+            } catch (err) {
+                console.log('Login error: ', err);
+            }
+            console.log(rest);
+            if(temp.code === '200')
+            {
+                console.log('sadwqewq');
+                this.props.navigation.navigate('ManHinh_StepOne');
+            }
+            else
+            {
+                this.refs.toast.show(temp.message, 1000);
+            }
     }
 
     render() {
-        const { username, password } = this.state;
+        // const { Email, Password } = this.state;
         return (
             <ImageBackground source={background} style={styles.imageBg} >
                 <View style={styles.container}>
@@ -84,9 +88,10 @@ export default class SignIn extends Component {
                             //   autoCapitalize="none"
                             //   autoCorrect={false}
                             //   returnKeyType="done"
-                              value={username}
-                              onChangeText={(username) => this.setState({ username })}
+                            //   value={Email}
+                              onChangeText={(Email) => this.setState({ Email })}
                             />
+                            <Toast ref='toast'/>
                         </View>
                         <View style={styles.inputWrap}>
                             <View style={styles.iconWrap}>
@@ -101,17 +106,19 @@ export default class SignIn extends Component {
                               placeholderTextColor="#FFF"
                               style={styles.input}
                               underlineColorAndroid="transparent"
-                              autoCapitalize="none"
-                              autoCorrect={false}
-                              returnKeyType="done"
-                              value={password}
-                              onChangeText={(password) => this.setState({ password })}
+                            //   autoCapitalize="none"
+                            //   autoCorrect={false}
+                            //   returnKeyType="done"
+                            //   value={Password}
+                              onChangeText={(Password) => this.setState({ Password })}
                             />
+                            <Toast ref='toast'/>
                         </View>
-                        <TouchableOpacity activeOpacity={0.7} onPress={this.logIn} >
+                        <TouchableOpacity activeOpacity={0.7} onPress={this.actionnn} >
                             <View style={styles.buttonSubmit}>
                                 <Text style={styles.text}>Get Started</Text>
                             </View>
+                            <Toast ref='toast'/>
                         </TouchableOpacity>
                     </KeyboardAvoidingView>
                     <View style={styles.wrapperSection}>

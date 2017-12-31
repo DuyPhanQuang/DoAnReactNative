@@ -93,13 +93,13 @@ const htmlContentNine = `
 <ul>
     <li>
         <div>
-            <h2>Start everyday with a promise to yourself.</h2>
+            <h2 style="color: #FFBF57">Start everyday with a promise to yourself.</h2>
             <p style="textAlign: center; font-size: 1.1em">Write it down in a notebook, or recite it in front of the mirror in the morning.</p>          
         </div>
     </li>
     <li>
         <div>
-            <h2>Quick weight loss diet strategy</h2>
+            <h2 style="color: #FFBF57">Quick weight loss diet strategy</h2>
             <p style="textAlign: center; font-size: 1.1em"></p>
             <ul>
                 <li style="font-size: 1em">Eat a little less food than you feel you need. Attempt to consume meals that are small enough so you could feel hungry every 3 hours.</li>
@@ -117,10 +117,10 @@ const htmlContentNine = `
     </li>
     <li>
         <div>
-            <h2>Some Meal Plan For One Weeks</h2>
+            <h2 style="color: #FFBF57">Some Meal Plan For One Weeks</h2>
             <p style="textAlign: center; font-size: 1.1em">Extreme Diet Weekly Meal Plan</p>
             <img src="http://i.imgur.com/kdH5Ibsg.png" />
-            <p style="textAlign: center; font-size: 1.1em">(Slender Surgie) Meal Plan Of The Week</p>
+            <p style="textAlign: center; font-size: 1.1em">Meal Plan Of The Week</p>
             <img src="http://i.imgur.com/WureEsxg.jpg" />
             <p style="textAlign: center; font-size: 1.1em">One Week Meal Plan</p>
             <img src="http://i.imgur.com/SFYePITg.jpg" />
@@ -135,7 +135,7 @@ class TipOne extends Component {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: '#FFF' }}>
                     <HTML
-                    html={htmlContentNine} imagesMaxWidth={Dimensions.get('window').width}
+                    html={htmlContentNine} imagesMaxWidth={Dimensions.get('window').width - 100 }
                     />
             </ScrollView>
         );

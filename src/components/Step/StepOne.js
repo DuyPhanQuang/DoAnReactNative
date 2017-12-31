@@ -8,11 +8,18 @@ import { DEVICE_HEIGHT, DEVICE_WIDTH } from '../Constants/AppConstants';
 StatusBar.setHidden(true);
 
 export default class StepOne extends Component {
+    constructor(props) {
+        super(props);
+        this.state = ({
+            loading: false,
+        });
+    }
     render() {
         const {
             container, one, two, three,
             iconStyle, btnStyle, textBtnStyle
         } = styles;
+        const { navigate } =  this.props.navigation;
         return (
             <View style={container}>
                 <Text style={one} >Hello</Text>
@@ -23,7 +30,20 @@ export default class StepOne extends Component {
                     you to consult a doctor before starting {'\n'} any fitness program.
                 </Text>
                 <TouchableOpacity
-                  onPress={() => { this.props.navigation.navigate('ManHinh_Fitness'); }}
+                  onPress=
+                  {
+                      () => {
+                        if(this.state.loading === false)
+                        {
+                            this.setState({loading: true}, async ()=>{
+                                setTimeout(async ()=>{
+                                    navigate('ManHinh_Fitness');
+                                    this.setState({loading: false})
+                                }, 500)
+                            })
+                        }
+                      }
+                  }
                   style={btnStyle}
                 >
                     <Text style={textBtnStyle} >NEXT</Text>

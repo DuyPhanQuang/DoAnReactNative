@@ -6,12 +6,19 @@ import icInfo from '../../../Media/appicon/info.png';
 import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
 
 export default class StartComponentOne extends Component {
+    constructor(props) {
+        super(props);
+        this.state = ({
+            loading: false,
+        });
+    }
     render() {
         const {
             wrapper, title, titleText1, titleText2, body,
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
             buttonText
         } = styles;
+        const { navigate } = this.props.navigation;
         return (
             <View style={wrapper} >
                 <View style={title} >
@@ -66,7 +73,20 @@ export default class StartComponentOne extends Component {
 
                         <TouchableOpacity
                           activeOpacity={0.5}
-                          onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining')}
+                          onPress=
+                          {
+                              () => {
+                                if(this.state.loading === false)
+                                {
+                                    this.setState({loading: true}, async ()=>{
+                                        setTimeout(async ()=>{
+                                            this.props.navigation.navigate('ManHinh_VideoTraining');
+                                            this.setState({loading: false})
+                                        }, 1000)
+                                    })
+                                }
+                              }
+                          }
                         >
                             <View style={button} >
                                 <Text style={buttonText} >START</Text>

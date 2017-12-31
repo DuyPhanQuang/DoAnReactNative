@@ -15,7 +15,7 @@ export default class TipsItem extends Component {
                   style={{
                         flex: 1,
                         flexDirection: 'row',
-                        // backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen' : 'tomato'
+                        // backgroundColor: this.props.index % 2 === 0 ? 'mediumseagreen' : 'tomato'
                         backgroundColor: '#FFF',
                         paddingTop: 5
                     }}
