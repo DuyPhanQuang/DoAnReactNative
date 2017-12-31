@@ -6,7 +6,7 @@ import * as ProgressBar from 'react-native-progress';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { calDistance, calSpeed, addZero, calBurnedCalories, subTwoTime } from '../utils/Utils';
+import { calDistance, calSpeed, addZero, calBurnedCalories, subTwoTime, calPace } from '../utils/Utils';
 
 import StatisticItem from '../customControls/StatisticItem';
 import Button from '../customControls/Button';
@@ -43,7 +43,7 @@ export default class RunningScreen extends React.Component {
         routeCoordinates: [],
         prevLatLng: {},
         prevMoment: 0,
-        speedData: [0]
+        speedData: []
     }
 
     componentWillMount() {
@@ -73,12 +73,14 @@ export default class RunningScreen extends React.Component {
                 const curMoment = new Date().getMilliseconds() / 1000;
                 // const curSpeed = newDistance / (curMoment - prevMoment);
                 const curSpeed = calSpeed(newDistance, curMoment, prevMoment);
+                const curPace = calPace(curSpeed);
                 const posLatLngs = pick(pos.coords, ['latitude', 'longitude']);
                 const newCal = calBurnedCalories(66, curMoment - prevMoment, curSpeed);
                 this.setState({
                     routeCoordinates: routeCoordinates.concat(posLatLngs),
                     stats: {
                         ...stats,
+                        pace: curPace,
                         speed: curSpeed,
                         calories: stats.calories + newCal,
                         distance: stats.distance + newDistance,
@@ -112,6 +114,7 @@ export default class RunningScreen extends React.Component {
             prevLatLng,
             speedData
         } = this.state;
+
         this.props.navigation.navigate(
             'ManHinh_Result',
             {
