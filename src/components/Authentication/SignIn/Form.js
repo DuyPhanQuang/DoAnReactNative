@@ -10,7 +10,6 @@ const usernameIcon = require('../../../Media/appicon/username.png');
 const passwordIcon = require('../../../Media/appicon/password.png');
 
 export default class Form extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +23,10 @@ export default class Form extends Component {
     }
 
     _loadInitialState = async () => {
-        var value = await AsyncStorage.getItem('users');
+        let value = await AsyncStorage.getItem('users');
         if (value == null) {
             // this.props.navigation.navigate('ManHinh_StepOne');
-            
+
         }
     }
 
@@ -43,7 +42,7 @@ export default class Form extends Component {
                 password: this.state.password,
             })
         })
-        .then((response) => response.json())
+        .then(response => response.json())
         .then((res) => {
             alert(res.message);
             if (res.success === true) {
@@ -78,7 +77,7 @@ export default class Form extends Component {
                       autoCapitalize="none"
                       autoCorrect={false}
                       returnKeyType="done"
-                      onChangeText={(username) => this.setState({username: username}) }
+                      onChangeText={username => this.setState({ username })}
                     />
                 </View>
                 <View style={inputWrap}>
@@ -97,12 +96,12 @@ export default class Form extends Component {
                       autoCapitalize="none"
                       autoCorrect={false}
                       returnKeyType="done"
-                      onChangeText={(password) => this.setState({password: password}) }
+                      onChangeText={password => this.setState({ password })}
                     />
                 </View>
-                <TouchableOpacity 
+                <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={this.login} 
+                  onPress={this.login}
                 >
                     <View style={buttonSubmit}>
                         <Text style={text}>Get Started</Text>
@@ -111,7 +110,6 @@ export default class Form extends Component {
             </KeyboardAvoidingView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
