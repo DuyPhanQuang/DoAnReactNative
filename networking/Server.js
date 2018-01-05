@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-const apiGetAllTips = 'http://10.0.137.5:3000/tips/';
-const apiGetAllAboutWeightLoss = 'http://10.0.137.5:3000/aboutweightloss';
-const apiGetAllTrainingData = 'http://10.0.137.5:3000/trainingdata';
-const apiGetAllExFullbody = 'http://10.0.137.5:3000/exfullbody';
-const apiGetAllExTopbody = 'http://10.0.137.5:3000/extopbody';
-const apiGetAllExMidbody = 'http://10.0.137.5:3000/exmidbody';
-const apiGetAllExBottombody = 'http://10.0.137.5:3000/exbottombody';
+const apiGetAllTips = 'https://doan-fitness.herokuapp.com/tips';
+// const apiGetAllAboutWeightLoss = 'http://10.0.137.5:3000/aboutweightloss';
+const apiGetAllTrainingData = 'https://doan-fitness.herokuapp.com/trainingdata';
+const apiGetAllExFullbody = 'https://doan-fitness.herokuapp.com/exfullbody';
+const apiGetAllExTopbody = 'https://doan-fitness.herokuapp.com/extopbody';
+const apiGetAllExMidbody = 'https://doan-fitness.herokuapp.com/exmidbody';
+const apiGetAllExBottombody = 'https://doan-fitness.herokuapp.com/exbottombody';
 
 async function getTipsFromServer() {
     try {
