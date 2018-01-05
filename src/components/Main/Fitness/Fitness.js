@@ -6,6 +6,12 @@ import { APP_THEME } from '../../Constants/Color';
 import StartComponent from './StartComponent';
 
 export default class Fitness extends Component {
+    constructor(props){
+        super(props);
+        this.state= ({
+            loading: false,
+        });
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { wrapper } = styles;
@@ -13,15 +19,38 @@ export default class Fitness extends Component {
             <View style={{ flex: 1, backgroundColor: APP_THEME }}>
                 {/* dat props onOpen */}
                 <Header 
-                  onOpen={() => { navigate('DrawerOpen'); }} 
-                  onOpenCalendar={() => { navigate('ManHinh_WorkoutSchedule'); }}
+                  onOpen=
+                  {
+                      () => {
+                        if(this.state.loading === false)
+                        {
+                            this.setState({loading: true}, async()=>{
+                                setTimeout(async()=>{
+                                    navigate('DrawerOpen');
+                                    this.setState({loading: false})
+                                }, 500)
+                            })
+                        }
+                      }
+                  } 
+                  onOpenCalendar=
+                  {
+                      () => {
+                        if(this.state.loading === false)
+                        {
+                            this.setState({loading: true}, async()=>{
+                                setTimeout(async ()=>{
+                                    navigate('ManHinh_WorkoutSchedule');
+                                    this.setState({loading: false})
+                                }, 500)
+                            })
+                        }
+                      }
+                  }
                 />
                 <FunctionBar onRunTrackerPress={() => navigate('ManHinh_RunTracker')} />
                 <View style={wrapper}>
                     <View style={{ flex: 1, justifyContent: 'center' }}>
-                        {/* <StartComponent
-                            onPress={() => alert("ccc")}
-                        /> */}
                         <StartComponent onPress={() => navigate('ManHinh_VideoTraining')} />
                     </View>
                 </View>

@@ -13,11 +13,12 @@ import icChangeInfo from '../../Media/appicon/ic_changeinfo.png';
 import icSignOut from '../../Media/appicon/ic_signout.png';
 import ShowInfo from './ShowInfo';
 import { APP_THEME } from '../Constants/Color';
+// import { setTimeout } from 'timers';
 
 export default class Menu extends Component {
     constructor(props) {
         super(props);
-        this.state = { isLoggedIn: true };
+        this.state = { isLoggedIn: true, loading: false };
     }
 
     render() {
@@ -40,7 +41,20 @@ export default class Menu extends Component {
             <View style={logInStyle} >
 
                     <TouchableOpacity
-                      onPress={() => { navigate('ManHinh_Home'); }}
+                      onPress=
+                      {
+                          () => {
+                              if(this.state.loading === false)
+                              {
+                                  this.setState({loading: true}, async ()=>{
+                                      setTimeout(async ()=>{
+                                          await navigate('ManHinh_Home');
+                                          this.setState({loading: false})
+                                      }, 500)
+                                  })
+                              }
+                          }
+                      }
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -50,7 +64,20 @@ export default class Menu extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      onPress={() => { navigate('ManHinh_WorkoutSchedule'); }} 
+                      onPress=
+                      {
+                        () => {
+                            if(this.state.loading === false)
+                            {
+                                this.setState({loading: true}, async ()=>{
+                                    setTimeout(async ()=>{
+                                        await navigate('ManHinh_WorkoutSchedule');
+                                        this.setState({loading:false})
+                                    }, 500)
+                                })
+                            }
+                        }
+                      } 
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -59,7 +86,20 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                      onPress={() => { navigate('ManHinh_MyWeight'); }}
+                      onPress=
+                      {
+                          () => {
+                              if(this.state.loading === false)
+                              {
+                                  this.setState({loading:true}, async ()=>{
+                                      setTimeout(async ()=>{
+                                          await navigate('ManHinh_MyWeight');
+                                          this.setState({loading: false})
+                                      }, 500)
+                                  })
+                              }
+                          }
+                      }
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -68,7 +108,20 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity 
-                      onPress={() => { navigate('ManHinh_BasicFlatList'); }}
+                      onPress=
+                      {
+                          () => {
+                            if(this.state.loading === false)
+                            {
+                                this.setState({loading: true}, async ()=>{
+                                    setTimeout(async ()=>{
+                                        await navigate('ManHinh_BasicFlatList');
+                                        this.setState({loading: false})
+                                    }, 500)
+                                })
+                            }
+                          }
+                      }
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -77,7 +130,20 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      onPress={() => { navigate('ManHinh_MainExercises'); }}
+                      onPress=
+                      {
+                          () => {
+                            if(this.state.loading === false)
+                            {
+                                this.setState({loading: true}, async ()=>{
+                                    setTimeout(async ()=>{
+                                        await navigate('ManHinh_MainExercises');
+                                        this.setState({loading: false})
+                                    }, 500)
+                                })
+                            }
+                          }
+                      }
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>
@@ -93,7 +159,20 @@ export default class Menu extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                       style={btnStyleAfter}
-                      onPress={() => { navigate('ManHinh_RateTheApp'); }}
+                      onPress=
+                      {
+                          () => {
+                            if(this.state.loading === false)
+                            {
+                                this.setState({loading: true}, async ()=>{
+                                    setTimeout(async ()=>{
+                                        navigate('ManHinh_RateTheApp');
+                                        this.setState({loading: false})
+                                    }, 500)
+                                })
+                            }
+                          }
+                      }
                     >
                         <View style={menuStyle}>
                             <Image source={icRateTheApp} style={iconStyle} />
@@ -101,7 +180,19 @@ export default class Menu extends Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      onPress={() => { navigate('ManHinh_Support'); }} 
+                      onPress={
+                          () => {
+                            if(this.state.loading === false)
+                            {
+                                this.setState({loading: true}, async ()=>{
+                                    setTimeout(async()=>{
+                                        navigate('ManHinh_Support');
+                                        this.setState({loading: false})
+                                    }, 500)
+                                })
+                            }
+                          }
+                      } 
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>

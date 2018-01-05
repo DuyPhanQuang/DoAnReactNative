@@ -7,6 +7,7 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"axios": "^0.17.1",
 		"babel-eslint": "^8.0.3",
 		"eslint": "^4.12.1",
 		"haversine": "^1.1.0",
@@ -17,6 +18,7 @@
 		"react-native-calendars": "^1.14.2",
 		"react-native-circular-progress": "^0.1.0",
 		"react-native-clean-project": "^1.0.4",
+		"react-native-easy-toast": "^1.0.9",
 		"react-native-elements": "^0.18.4",
 		"react-native-htmlview": "^0.12.1",
 		"react-native-maps": "^0.18.3",
