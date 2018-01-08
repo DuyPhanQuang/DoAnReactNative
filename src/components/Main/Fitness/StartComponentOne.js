@@ -73,17 +73,15 @@ export default class StartComponentOne extends Component {
 
                         <TouchableOpacity
                           activeOpacity={0.5}
-                          onPress=
-                          {
+                          onPress={
                               () => {
-                                if(this.state.loading === false)
-                                {
-                                    this.setState({loading: true}, async ()=>{
-                                        setTimeout(async ()=>{
+                                if (this.state.loading === false) {
+                                    this.setState({ loading: true }, async () => {
+                                        setTimeout(async () => {
                                             this.props.navigation.navigate('ManHinh_VideoTraining');
-                                            this.setState({loading: false})
-                                        }, 1000)
-                                    })
+                                            this.setState({ loading: false });
+                                        }, 1000);
+                                    });
                                 }
                               }
                           }

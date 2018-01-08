@@ -19,7 +19,7 @@ export default class StepOne extends Component {
             container, one, two, three,
             iconStyle, btnStyle, textBtnStyle
         } = styles;
-        const { navigate } =  this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             <View style={container}>
                 <Text style={one} >Hello</Text>
@@ -30,17 +30,15 @@ export default class StepOne extends Component {
                     you to consult a doctor before starting {'\n'} any fitness program.
                 </Text>
                 <TouchableOpacity
-                  onPress=
-                  {
+                  onPress={
                       () => {
-                        if(this.state.loading === false)
-                        {
-                            this.setState({loading: true}, async ()=>{
-                                setTimeout(async ()=>{
+                        if (this.state.loading === false) {
+                            this.setState({ loading: true }, async () => {
+                                setTimeout(async () => {
                                     navigate('ManHinh_Fitness');
-                                    this.setState({loading: false})
-                                }, 500)
-                            })
+                                    this.setState({ loading: false });
+                                }, 500);
+                            });
                         }
                       }
                   }

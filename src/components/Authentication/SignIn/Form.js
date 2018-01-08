@@ -23,7 +23,7 @@ export default class Form extends Component {
     }
 
     _loadInitialState = async () => {
-        let value = await AsyncStorage.getItem('users');
+        const value = await AsyncStorage.getItem('users');
         if (value == null) {
             // this.props.navigation.navigate('ManHinh_StepOne');
 

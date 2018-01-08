@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
+import { getTrainingData } from './LocalStorage';
 
 const icNumberOne = require('../../../Media/appicon/one.png');
 const icStar = require('../../../Media/appicon/starworkout.png');
 const icInfo = require('../../../Media/appicon/info.png');
 
 export default class TrainingItem extends Component {
+    state = {
+        finished: false
+    }
+    componentWillMount() {
+        const arr = getTrainingData();
+        const { index } = this.props;
+        this.setState({ finished: arr[index] });
+    }
     render() {
         const {
             wrapper, title, titleText1, titleText2, body,
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
             buttonText
         } = styles;
-        const { item } = this.props;
+        const { finished } = this.state.finished;
+        const { item, index } = this.props;
         return (
             <View style={wrapper} >
                 <View style={title} >
@@ -41,9 +51,9 @@ export default class TrainingItem extends Component {
                             </View>
                         </View>
                         <View >
-                            <TouchableOpacity 
-                            activeOpacity={0.5}
-                            onPress={() => alert(item.Note)} 
+                            <TouchableOpacity
+                              activeOpacity={0.5}
+                              onPress={() => alert(item.Note)}
                             >
                                 <Image
                                   source={icInfo}
@@ -75,10 +85,13 @@ export default class TrainingItem extends Component {
 
                         <TouchableOpacity
                           activeOpacity={0.5}
-                          onPress={this.props.onPress}
+                          disabled={finished}
+                          onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining', { data: item.danhsachVideo, index })}
                         >
-                            <View style={button} >
-                                <Text style={buttonText} >START</Text>
+                            <View style={button}>
+                                <Text style={buttonText} >
+                                    {finished ? 'FINIHED' : 'START'}
+                                </Text>
                             </View>
                         </TouchableOpacity>
 

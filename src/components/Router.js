@@ -24,8 +24,9 @@ import ResultScreen from './RunTracker/screens/ResultScreen';
 import BasicFlatList from './Tips/BasicFlatList';
 import TipsItem from './Tips/TipsItem';
 import TipOne from './Tips/DetailTips/TipOne';
+import StartComponent from './Main/Fitness/StartComponent';
 import { DEVICE_HEIGHT } from './Constants/AppConstants';
-import { BACKGROUND_TABBAR } from './Constants/Color';
+import { BACKGROUND_TABBAR, APP_THEME } from './Constants/Color';
 // import SignInTwo from './Authentication/SignIn/SignInTwo';
 import SignUpTwo from './Authentication/SignUp/SignUpTwo';
 import SignIn from './Authentication/SignIn';
@@ -65,70 +66,70 @@ export const MainStack = StackNavigator({
         screen: Home,
         navigationOptions: {
             title: 'Home',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_WorkoutSchedule: {
         screen: WorkoutSchedule,
         navigationOptions: {
             title: 'Workout Schedule',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_MyWeight: {
         screen: MyWeight,
         navigationOptions: {
             title: 'Your Weight',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_Settings: {
         screen: Settings,
         navigationOptions: {
             title: 'Settings',
-            headerTintColor: '#F66D6A',
-        }   
+            headerTintColor: APP_THEME,
+        }
     },
     ManHinh_RateTheApp: {
         screen: RateTheApp,
         navigationOptions: {
             title: 'Rate the app! Please 5 stars ^_^',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_Support: {
         screen: Support,
         navigationOptions: {
             title: 'Support',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_ChangeInfo: {
         screen: ChangeInfo,
         navigationOptions: {
             title: 'Change your infomation',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_MainExercises: {
         screen: MainExercises,
         navigationOptions: {
             title: 'Exercises',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_VideoTraining: {
         screen: VideoTraining,
         navigationOptions: {
             title: 'Fitness for WeightLoss',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_BasicFlatList: {
         screen: BasicFlatList,
         navigationOptions: {
             title: 'Tips for all weight loss',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_TipsItem: {
@@ -138,7 +139,7 @@ export const MainStack = StackNavigator({
         screen: TipOne,
         navigationOptions: {
             title: 'Details tips',
-            headerTintColor: '#F66D6A',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_RunTracker: { screen: PrepareRunScreen },
@@ -150,13 +151,13 @@ export const ExercisesFullBodyStack = StackNavigator({
         screen: ExercisesFullBody,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image 
-                    source={require('../Media/appicon/ic_fullbody.png')}
-                    style={[styles.icon, {tintColor: tintColor}]}
+                <Image
+                  source={require('../Media/appicon/ic_fullbody.png')}
+                  style={[styles.icon, { tintColor }]}
                 />
             ),
             header: null
-            
+
         }
     }
 });
@@ -165,9 +166,9 @@ export const ExercisesUpperBodyStack = StackNavigator({
         screen: ExercisesUpperBody,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image 
-                    source={require('../Media/appicon/ic_topbody.png')}
-                    style={[styles.icon, {tintColor: tintColor}]}
+                <Image
+                  source={require('../Media/appicon/ic_topbody.png')}
+                  style={[styles.icon, { tintColor }]}
                 />
             ),
             header: null
@@ -179,9 +180,9 @@ export const ExercisesMiddleBodyStack = StackNavigator({
         screen: ExercisesMiddleBody,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image 
-                    source={require('../Media/appicon/ic_middlebody.png')}
-                    style={[styles.icon, {tintColor: tintColor}]}
+                <Image
+                  source={require('../Media/appicon/ic_middlebody.png')}
+                  style={[styles.icon, { tintColor }]}
                 />
             ),
             header: null
@@ -193,9 +194,9 @@ export const ExercisesLowerBodyStack = StackNavigator({
         screen: ExercisesLowerBody,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Image 
-                    source={require('../Media/appicon/ic_lowerbody.png')}
-                    style={[styles.icon, {tintColor: tintColor}]}
+                <Image
+                  source={require('../Media/appicon/ic_lowerbody.png')}
+                  style={[styles.icon, { tintColor }]}
                 />
             ),
             header: null
@@ -243,10 +244,10 @@ export const ExercisesTab = TabNavigator({
         tabStyle: {
             height: DEVICE_HEIGHT / 11
         },
-        activeTintColor: '#F66D6A',
+        activeTintColor: APP_THEME,
         showIcon: true,
         upperCaseLabel: false,
-        pressColor: '#F66D6A'
+        pressColor: APP_THEME
     },
 
 });

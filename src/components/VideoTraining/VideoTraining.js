@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
 import Video from 'react-native-video';
 import * as Progress from 'react-native-progress';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { APP_THEME } from '../Constants/Color';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
+import { getTrainingData, setTrainingData } from '../Main/Fitness/LocalStorage';
 
 export default class VideoTraining extends Component {
     constructor(props) {
@@ -16,32 +17,33 @@ export default class VideoTraining extends Component {
     state = {
         canNext: false,
         currentVideoIndex: 0,
-        totalVideo: 2,
-        vids: [
-            {
-                uri: 'phantren1',
-                title: 'Torso Twists'
-            },
-            {
-                uri: 'phantren2',
-                title: 'Row + Lateral Steps'
-            }
-        ],
+        vids: [],
         duration: 1,
         progress: 0,
     }
 
+    componentWillMount() {
+        this.setState({ vids: this.props.navigation.state.params.data });
+    }
+
     onLoadVideo(data) {
         this.setState({
-            duration: Math.round(data.duration),
-            canNext: false,
+            duration: Math.round(data.duration)
         });
+        this.setState({ canNext: false });
     }
 
     forward() {
+        const { currentVideoIndex, vids } = this.state;
+        if (currentVideoIndex === vids.length - 1) {
+            const arr = getTrainingData();
+            arr[this.props.index] = true;
+            setTrainingData(arr);
+            this.props.navigation.goBack();
+            return;
+        }
         this.setState({
-            currentVideoIndex: this.state.currentVideoIndex + 1,
-            canNext: false
+            currentVideoIndex: currentVideoIndex + 1,
         });
         this.video.seek(0);
     }
@@ -58,15 +60,16 @@ export default class VideoTraining extends Component {
             container, videoContainer, contentContainer, video, progressContainer, text, videoTitle, nextVid, remainingTime
         } = styles;
         const {
-            canNext, currentVideoIndex, totalVideo,
-            vids, duration, progress
+            currentVideoIndex,
+            vids, duration, progress, canNext
         } = this.state;
+        const totalVideo = vids.length;
         return (
             <View style={container}>
                 <View style={videoContainer}>
                     <Video
                       ref={(ref) => { this.video = ref; }}
-                      source={{ uri: vids[currentVideoIndex].uri }}
+                      source={{ uri: vids[currentVideoIndex].Url }}
                       style={video}
                       resizeMode="cover"
                       onProgress={prog =>
@@ -106,8 +109,8 @@ export default class VideoTraining extends Component {
                             </AnimatedCircularProgress>
                         </View>
                         <TouchableOpacity
-                          disabled={!canNext}
                           onPress={this.forward}
+                          disabled={!canNext}
                         >
                             <Icon
                               name="navigate-next"
@@ -118,14 +121,14 @@ export default class VideoTraining extends Component {
                     </View>
                     <View style={text}>
                         <Text style={videoTitle}>
-                            {vids[currentVideoIndex].title}
+                            {vids[currentVideoIndex].TitleName}
                         </Text>
                         <Text style={nextVid}>
-                        {
-                            currentVideoIndex + 1 === vids.length
-                            ? 'This is the last video'
-                            : `Next: ${vids[currentVideoIndex + 1].title}`
-                        }
+                            {
+                                currentVideoIndex + 1 === vids.length
+                                ? 'This is the last video'
+                                : `Next: ${vids[currentVideoIndex + 1].TitleName}`
+                            }
                         </Text>
                         <Text>{currentVideoIndex + 1}/{totalVideo}</Text>
                     </View>
