@@ -10,7 +10,7 @@ export default class ShowInfo extends Component {
     render() {
         const {
             container, litleContainer, imgProfile, profile, textName,
-            textSub, icRightArrow, buttonUpgrade, textBtnUpgrade,
+            textSub, buttonUpgrade, textBtnUpgrade,
             tapinWrap,
         } = styles;
         return (

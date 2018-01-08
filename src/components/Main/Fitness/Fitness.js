@@ -6,9 +6,9 @@ import { APP_THEME } from '../../Constants/Color';
 import StartComponent from './StartComponent';
 
 export default class Fitness extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state= ({
+        this.state = ({
             loading: false,
         });
     }
@@ -18,32 +18,28 @@ export default class Fitness extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: APP_THEME }}>
                 {/* dat props onOpen */}
-                <Header 
-                  onOpen=
-                  {
+                <Header
+                  onOpen={
                       () => {
-                        if(this.state.loading === false)
-                        {
-                            this.setState({loading: true}, async()=>{
-                                setTimeout(async()=>{
+                        if (this.state.loading === false) {
+                            this.setState({ loading: true }, async () => {
+                                setTimeout(async () => {
                                     navigate('DrawerOpen');
-                                    this.setState({loading: false})
-                                }, 500)
-                            })
+                                    this.setState({ loading: false });
+                                }, 500);
+                            });
                         }
                       }
-                  } 
-                  onOpenCalendar=
-                  {
+                  }
+                  onOpenCalendar={
                       () => {
-                        if(this.state.loading === false)
-                        {
-                            this.setState({loading: true}, async()=>{
-                                setTimeout(async ()=>{
+                        if (this.state.loading === false) {
+                            this.setState({ loading: true }, async () => {
+                                setTimeout(async () => {
                                     navigate('ManHinh_WorkoutSchedule');
-                                    this.setState({loading: false})
-                                }, 500)
-                            })
+                                    this.setState({ loading: false });
+                                }, 500);
+                            });
                         }
                       }
                   }
