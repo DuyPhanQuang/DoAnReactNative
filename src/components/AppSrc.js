@@ -16,14 +16,16 @@ import VideoTraining from './VideoTraining/VideoTraining';
 import TipOne from './Tips/DetailTips/TipOne';
 import MainExercises from './Exercises/MainExercises';
 import MyWeight from './MyWeight/MyWeight';
+import SignIn from './Authentication/SignIn';
 
 export default class AppSrc extends Component {
     render() {
         return (
+            //<SignIn />
             // <VideoTraining />
             // <StartComponent />
             // <BasicFlatList />
-            <SideMenu />
+             <SideMenu />
             // <MainExercises />
             // <TipOne />
             // <Description />
