@@ -27,10 +27,7 @@ export default class TrainingItem extends Component {
             buttonText, disableButton
         } = styles;
         const { finished } = this.state;
-<<<<<<< HEAD
-=======
         console.log(finished);
->>>>>>> 67054dbbdab494541fca9cd6d1ac9a3ec409dc18
         const { item, index } = this.props;
         return (
             <View style={wrapper} >
@@ -98,7 +95,7 @@ export default class TrainingItem extends Component {
                         >
                             <View style={finished ? disableButton : button}>
                                 <Text style={buttonText} >
-                                    {finished ? 'FINIHED' : 'START'}
+                                    {finished ? 'FINISHED' : 'START'}
                                 </Text>
                             </View>
                         </TouchableOpacity>

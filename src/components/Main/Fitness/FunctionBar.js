@@ -13,7 +13,7 @@ export default class FunctionBar extends Component {
 
         this.state = {
             progress: 0,
-            indeterminate: false,
+            indeterminate: true,
         };
     }
 
@@ -21,23 +21,23 @@ export default class FunctionBar extends Component {
         this.animate();
     }
 
-    async animate() {
-        // let progress = 0;
-        // this.setState({ progress });
-        // setTimeout(() => {
-        //     this.setState({ indeterminate: false });
-        //     setInterval(() => {
-        //         progress += Math.random() / 5;
-        //         if (progress > 1) {
-        //             progress = 1;
-        //         }
-        //         this.setState({ progress });
-        //     }, 500);
-        // }, 1500);
+    animate() {
         let progress = 0;
-        await getProgress().then((val) => { progress = val; });
         this.setState({ progress });
-    }
+        setTimeout(() => {
+            this.setState({ indeterminate: false });
+            setInterval(() => {
+                progress += Math.random() / 5;
+                if (progress > 1) {
+                    progress = 1;
+                }
+                this.setState({ progress });
+            }, 500);
+        }, 1500);
+        // let progress = 0;
+        // await getProgress().then((val) => { progress = val; });
+        // this.setState({ progress });
+     }
 
     render() {
         const {

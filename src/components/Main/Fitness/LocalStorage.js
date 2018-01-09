@@ -11,10 +11,6 @@ async function getTrainingData(callback) {
     return obj;
 }
 
-<<<<<<< HEAD
-function setTrainingData(obj) {
-    AsyncStorage.setItem('data', JSON.stringify(obj), err => alert(err));
-=======
 function setTrainingData(arr) {
     const data = JSON.stringify(arr);
     console.log(data);
@@ -35,7 +31,6 @@ async function getProgress() {
     );
 
     return count / data;
->>>>>>> 67054dbbdab494541fca9cd6d1ac9a3ec409dc18
 }
 
 export { getTrainingData };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Slide from './SlideExercises';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 
@@ -106,7 +106,7 @@ export default class DetailExercisesFull extends Component {
                   activeOpacity={0.5}
                   onPress={() => this.props.navigation.goBack()}
                 >
-                    <Icon name="arrow-left" size={35} color="#F66D6A" />
+                    <Icon name="ios-close" size={35} color="#F66D6A" />
                 </TouchableOpacity>
                 </View>
                 <View style={videoContent}>
