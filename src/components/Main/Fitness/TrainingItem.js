@@ -8,27 +8,35 @@ const icStar = require('../../../Media/appicon/starworkout.png');
 const icInfo = require('../../../Media/appicon/info.png');
 
 export default class TrainingItem extends Component {
-    state = {
-        finished: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            finished: true
+        };
     }
+
     componentWillMount() {
-        const arr = getTrainingData();
-        const { index } = this.props;
-        this.setState({ finished: arr[index] });
+        console.log(this.props.isFinished);
+        this.setState({ finished: this.props.isFinished });
     }
+
     render() {
         const {
             wrapper, title, titleText1, titleText2, body,
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
-            buttonText
+            buttonText, disableButton
         } = styles;
         const { finished } = this.state;
+<<<<<<< HEAD
+=======
+        console.log(finished);
+>>>>>>> 67054dbbdab494541fca9cd6d1ac9a3ec409dc18
         const { item, index } = this.props;
         return (
             <View style={wrapper} >
                 <View style={title} >
-                        <Text style={titleText1} >Today</Text>
-                        <Text style={titleText2} >{item.Name}</Text>
+                    <Text style={titleText1} >Today</Text>
+                    <Text style={titleText2} >{item.Name}</Text>
                 </View>
                 <View style={body} >
                     <View style={cardio} >
@@ -88,7 +96,7 @@ export default class TrainingItem extends Component {
                           disabled={finished}
                           onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining', { data: item.danhsachVideo, index })}
                         >
-                            <View style={button}>
+                            <View style={finished ? disableButton : button}>
                                 <Text style={buttonText} >
                                     {finished ? 'FINIHED' : 'START'}
                                 </Text>
@@ -164,6 +172,13 @@ const styles = StyleSheet.create({
     button: {
         height: DEVICE_HEIGHT * 0.08,
         backgroundColor: '#FFBF57',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+    },
+    disableButton: {
+        height: DEVICE_HEIGHT * 0.08,
+        backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,

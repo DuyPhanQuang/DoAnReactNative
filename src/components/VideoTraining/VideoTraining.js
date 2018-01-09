@@ -33,11 +33,13 @@ export default class VideoTraining extends Component {
         this.setState({ canNext: false });
     }
 
-    forward() {
+    async forward() {
         const { currentVideoIndex, vids } = this.state;
-        if (currentVideoIndex === vids.length - 1) {
-            const arr = getTrainingData();
-            arr[this.props.index] = true;
+        if (currentVideoIndex !== vids.length - 1) {
+            console.log('forward1');
+            let arr = [];
+            await getTrainingData(() => {}).then((val) => { arr = val; });
+            arr[this.props.navigation.state.params.index] = true;
             setTrainingData(arr);
             this.props.navigation.goBack();
             return;
