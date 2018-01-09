@@ -18,25 +18,28 @@ export default class StartComponent extends Component {
         this.refreshDataFromServer();
     }
 
-    refreshDataFromServer = () => {
-        getTrainingDataFromServer()
+    refreshDataFromServer = async () => {
+        await getTrainingDataFromServer()
             .then((trainingdata) => {
-                this.setState({ trainingdataFromServer: trainingdata, isLoading: false });
-            })
-            .then(() => {
-                const data = getTrainingData(() => {
-                    const arr = [];
-                    for (let i = 0; i < this.state.trainingdataFromServer.length; i++) {
-                        arr.push(false);
-                    }
-                    setTrainingData(arr);
-                });
-                if (data.length > 0)
-                    this.setState({ data });
+                this.setState({ trainingdataFromServer: trainingdata });
             })
             .catch((error) => {
                 this.setState({ trainingdataFromServer: [] });
             });
+        let data = [];
+        await getTrainingData(e => console.log(e))
+            .then((val) => { data = val; });
+        console.log(data);
+
+        if (data === null) {
+            const arr = [];
+            for (let i = 0; i < this.state.trainingdataFromServer.length; i++) {
+                arr.push(false);
+            }
+            await setTrainingData(arr);
+            data = arr;
+        }
+        this.setState({ data, isLoading: false });
     }
 
     render() {
@@ -59,6 +62,7 @@ export default class StartComponent extends Component {
                           item={item}
                           index={index}
                           navigation={this.props.navigation}
+                          isFinished={this.state.data[index]}
                         />
                   )}
                   keyExtractor={(item, index) => item.Name}
