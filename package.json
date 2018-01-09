@@ -27,10 +27,12 @@
 		"react-native-render-html": "^3.5.2",
 		"react-native-star-rating": "^1.0.8",
 		"react-native-swipeout": "^2.3.1",
+		"react-native-swiper": "^1.5.13",
 		"react-native-vector-icons": "^4.4.2",
 		"react-native-video": "^2.0.0",
 		"react-navigation": "^1.0.0-beta.21",
-		"round": "^2.0.1"
+		"round": "^2.0.1",
+		"swiper": "^4.0.7"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",

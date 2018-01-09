@@ -22,7 +22,7 @@ export default class TrainingItem extends Component {
             cardio, moreWorkouts, icon, info, infoText, detailText, button,
             buttonText
         } = styles;
-        const { finished } = this.state.finished;
+        const { finished } = this.state;
         const { item, index } = this.props;
         return (
             <View style={wrapper} >

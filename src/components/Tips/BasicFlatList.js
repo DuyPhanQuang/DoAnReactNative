@@ -40,12 +40,13 @@ export default class BasicFlatList extends Component {
                 <View style={{ flex: 2 }} />
                 <View style={{ flex: 5, marginTop: 22 }}>
                     <FlatList
+                      showsVerticalScrollIndicator={false}
                       data={this.state.tipsFromServer}
                       renderItem={({ item, index }) =>
                         // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
                          (
                         <TipsItem 
-                          item={item} 
+                          item={item}
                           index={index + 1}
                           onShow={() => { navigate('ManHinh_TipOne'); }}
                           />
@@ -57,7 +58,7 @@ export default class BasicFlatList extends Component {
                           refreshing={this.state.refreshing}
                           onRefresh={this.onRefresh}
                         />
-                    }
+                      }
                     />
                 </View>
             </View>

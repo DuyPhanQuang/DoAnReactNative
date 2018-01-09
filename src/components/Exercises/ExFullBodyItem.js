@@ -5,10 +5,16 @@ import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExFullBodyItem extends Component {
     render() {
+        const { item, index } = this.props;
         return (
             <View style={{ flex: 1 }}>
-                <TouchableOpacity 
+                <TouchableOpacity
                   activeOpacity={0.5}
+                  onPress={
+                      () => this.props.navigation.navigate(
+                          'ManHinh_DetailExercisesFull',
+                  { title: item.Name, des: item.Description, bre: item.Breathing, urlvids: item.UrlVideo }
+                  )}
                 >
                 <View
                   style={{
@@ -30,7 +36,7 @@ export default class ExFullBodyItem extends Component {
                         <Text style={styles.title}>{this.props.item.Name}</Text>
                     </View>
                     <View style={{ justifyContent: 'center', }}>
-                    <Icon name="chevron-right" size={30} color='#F66D6A' />
+                    <Icon name="chevron-right" size={30} color="#F66D6A" />
                     </View>
 
                 </View>

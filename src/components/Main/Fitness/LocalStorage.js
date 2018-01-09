@@ -7,7 +7,7 @@ function getTrainingData(callback) {
 }
 
 function setTrainingData(obj) {
-    AsyncStorage.setItem('data', JSON.stringify(obj), err => alert(err.message));
+    AsyncStorage.setItem('data', JSON.stringify(obj), err => alert(err));
 }
 
 export { getTrainingData };

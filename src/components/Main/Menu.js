@@ -41,18 +41,6 @@ export default class Menu extends Component {
             <View style={logInStyle} >
 
                     <TouchableOpacity
-                      onPress={
-                          () => {
-                              if (this.state.loading === false) {
-                                  this.setState({ loading: true }, async () => {
-                                      setTimeout(async () => {
-                                          await navigate('ManHinh_Home');
-                                          this.setState({ loading: false });
-                                      }, 500);
-                                  });
-                              }
-                          }
-                      }
                       style={btnStyleAfter}
                     >
                         <View style={menuStyle}>

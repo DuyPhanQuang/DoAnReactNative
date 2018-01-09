@@ -21,11 +21,12 @@ import SignIn from './Authentication/SignIn';
 export default class AppSrc extends Component {
     render() {
         return (
-            //<SignIn />
+            // <SignIn />
             // <VideoTraining />
             // <StartComponent />
             // <BasicFlatList />
              <SideMenu />
+            // <Test />
             // <MainExercises />
             // <TipOne />
             // <Description />
