@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
+import { getProgress } from './LocalStorage';
 
 const trackIcon = require('../../../Media/appicon/ic_track.png');
 const balanceIcon = require('../../../Media/appicon/ic_balance.png');
@@ -12,7 +13,7 @@ export default class FunctionBar extends Component {
 
         this.state = {
             progress: 0,
-            indeterminate: true,
+            indeterminate: false,
         };
     }
 
@@ -20,19 +21,22 @@ export default class FunctionBar extends Component {
         this.animate();
     }
 
-    animate() {
+    async animate() {
+        // let progress = 0;
+        // this.setState({ progress });
+        // setTimeout(() => {
+        //     this.setState({ indeterminate: false });
+        //     setInterval(() => {
+        //         progress += Math.random() / 5;
+        //         if (progress > 1) {
+        //             progress = 1;
+        //         }
+        //         this.setState({ progress });
+        //     }, 500);
+        // }, 1500);
         let progress = 0;
+        await getProgress().then((val) => { progress = val; });
         this.setState({ progress });
-        setTimeout(() => {
-            this.setState({ indeterminate: false });
-            setInterval(() => {
-                progress += Math.random() / 5;
-                if (progress > 1) {
-                    progress = 1;
-                }
-                this.setState({ progress });
-            }, 500);
-        }, 1500);
     }
 
     render() {
