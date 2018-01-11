@@ -35,7 +35,7 @@ export default class VideoTraining extends Component {
 
     async forward() {
         const { currentVideoIndex, vids } = this.state;
-        if (currentVideoIndex !== vids.length - 1) {
+        if (currentVideoIndex === vids.length - 1) {
             console.log('forward1');
             let arr = [];
             await getTrainingData(() => {}).then((val) => { arr = val; });
