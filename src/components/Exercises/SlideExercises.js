@@ -7,7 +7,13 @@ export default class SlideExercises extends Component {
     render() {
         const { container, img } = styles;
         return (
-            <Swiper style={container} showsButtons autoplay autoplayTimeout={5} autoplayDirection>
+            <Swiper
+              style={container}
+              showsButtons
+              autoplay
+              autoplayTimeout={5}
+              autoplayDirection
+            >
                 <View style={{ flex: 1 }}>
                 <Image
                   source={require('../../Media/appicon/slideex1.jpg')}
@@ -30,7 +36,7 @@ export default class SlideExercises extends Component {
         );
     }
 }
-//pixel 800 x 450
+// pixel 800 x 450
 const imgWidth = DEVICE_WIDTH;
 const imgHeight = (imgWidth / 800) * 300;
 

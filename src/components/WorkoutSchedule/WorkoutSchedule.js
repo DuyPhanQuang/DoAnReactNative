@@ -9,6 +9,10 @@ import { Agenda } from 'react-native-calendars';
 export default class WorkoutSchedule extends Component {
   constructor(props) {
     super(props);
+    this.loadItems = this.loadItems.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+    this.renderEmptyDate = this.renderEmptyDate.bind(this);
+    this.rowHasChanged = this.rowHasChanged.bind(this);
     this.state = {
       items: {}
     };
@@ -59,11 +63,11 @@ export default class WorkoutSchedule extends Component {
     return (
       <Agenda
         items={this.state.items}
-        loadItemsForMonth={this.loadItems.bind(this)}
+        loadItemsForMonth={this.loadItems}
         selected="2017-11-26"
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
+        renderItem={this.renderItem}
+        renderEmptyDate={this.renderEmptyDate}
+        rowHasChanged={this.rowHasChanged}
         // markingType={'period'}
         // markedDates={{
         //    '2017-11-08': {textColor: '#666'},
