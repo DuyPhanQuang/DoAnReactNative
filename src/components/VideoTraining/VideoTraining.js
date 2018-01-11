@@ -45,11 +45,11 @@ export default class VideoTraining extends Component {
             this.props.navigation.goBack();
             return;
         }
-        this.setState({
+        await this.setState({
             currentVideoIndex: currentVideoIndex + 1,
             canNext: false
         });
-        this.video.seek(0);
+        await this.video.seek(0);
     }
 
     back() {
