@@ -4,10 +4,10 @@ async function getTrainingData(callback) {
     let obj;
     await AsyncStorage.getItem('trainingdata', callback)
         .then((value) => {
-            console.log(value);
+            // console.log(value);
             obj = JSON.parse(value);
         });
-    console.log(obj);
+    // console.log(obj);
     return obj;
 }
 
@@ -25,12 +25,11 @@ async function getProgress() {
         (a, b) => {
             if (b === true)
                 return a + 1;
-            return 0;
+            return a;
         }
         , 0
     );
-
-    return count / data;
+    return count / data.length;
 }
 
 export { getTrainingData };

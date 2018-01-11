@@ -26,7 +26,8 @@ export default class StartComponent extends Component {
             .catch((error) => {
                 this.setState({ trainingdataFromServer: [] });
             });
-        let data = [];
+
+        let data = null;
         await getTrainingData(e => console.log(e))
             .then((val) => { data = val; });
         console.log(data);

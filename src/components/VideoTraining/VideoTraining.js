@@ -41,6 +41,7 @@ export default class VideoTraining extends Component {
             await getTrainingData(() => {}).then((val) => { arr = val; });
             arr[this.props.navigation.state.params.index] = true;
             setTrainingData(arr);
+            this.props.refreshFinish();
             this.props.navigation.goBack();
             return;
         }

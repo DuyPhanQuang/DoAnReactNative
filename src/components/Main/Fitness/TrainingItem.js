@@ -16,8 +16,12 @@ export default class TrainingItem extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.isFinished);
+        // console.log(this.props.isFinished);
         this.setState({ finished: this.props.isFinished });
+    }
+
+    refreshFinish() {
+        this.setState({ finished: true });
     }
 
     render() {
@@ -27,7 +31,6 @@ export default class TrainingItem extends Component {
             buttonText, disableButton
         } = styles;
         const { finished } = this.state;
-        console.log(finished);
         const { item, index } = this.props;
         return (
             <View style={wrapper} >
@@ -91,7 +94,7 @@ export default class TrainingItem extends Component {
                         <TouchableOpacity
                           activeOpacity={0.5}
                           disabled={finished}
-                          onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining', { data: item.danhsachVideo, index })}
+                          onPress={() => this.props.navigation.navigate('ManHinh_VideoTraining', { data: item.danhsachVideo, index, refreshFinish: this.refreshFinish })}
                         >
                             <View style={finished ? disableButton : button}>
                                 <Text style={buttonText} >
