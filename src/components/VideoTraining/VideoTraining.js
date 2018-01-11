@@ -47,6 +47,7 @@ export default class VideoTraining extends Component {
         }
         this.setState({
             currentVideoIndex: currentVideoIndex + 1,
+            canNext: false
         });
         this.video.seek(0);
     }
