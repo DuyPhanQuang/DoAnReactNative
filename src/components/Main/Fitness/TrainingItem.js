@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
 import { DEVICE_HEIGHT } from '../../Constants/AppConstants';
 import { getTrainingData } from './LocalStorage';
 
@@ -61,13 +62,18 @@ export default class TrainingItem extends Component {
                         <View >
                             <TouchableOpacity
                               activeOpacity={0.5}
-                              onPress={() => alert(item.Note)}
+                              onPress={() => this.props.navigation.navigate(
+                                  'ManHinh_FinishedTrainingDay',
+                                    {
+                                    data: item.danhsachVideo,
+                                    index,
+                                    totaltime: item.TotalTime,
+                                    totalex: item.TotalExercises,
+                                    }
+                                )
+                              }
                             >
-                                <Image
-                                  source={icInfo}
-                                  style={icon}
-                                  resizeMode="contain"
-                                />
+                                <Icon name="info-with-circle" size={35} color="#000" />
                             </TouchableOpacity>
                         </View>
                     </View>

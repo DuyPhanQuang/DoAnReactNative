@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Slide from './SlideExercises';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 
-export default class DetailExercisesFull extends Component {
+export default class DetailExercisesBottom extends Component {
     constructor(props) {
         super(props);
     }

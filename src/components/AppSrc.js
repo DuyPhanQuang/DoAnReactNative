@@ -17,6 +17,7 @@ import TipOne from './Tips/DetailTips/TipOne';
 import MainExercises from './Exercises/MainExercises';
 import MyWeight from './MyWeight/MyWeight';
 import SignIn from './Authentication/SignIn';
+import FinishedTrainingDay from './Main/Fitness/FinishedTrainingDay';
 
 export default class AppSrc extends Component {
     render() {
@@ -26,6 +27,7 @@ export default class AppSrc extends Component {
             // <StartComponent />
             // <BasicFlatList />
              <SideMenu />
+            // <FinishedTrainingDay />
             // <Test />
             // <MainExercises />
             // <TipOne />

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Slide from './SlideExercises';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 
-export default class DetailExercisesFull extends Component {
+export default class DetailExercisesTop extends Component {
     constructor(props) {
         super(props);
     }
@@ -171,9 +171,9 @@ export default class DetailExercisesFull extends Component {
                         </View>
                     </View>
                 </View>
-                {/* <View style={{ flex: 1, borderRadius: 30 }}>
+                <View style={{ flex: 1, borderRadius: 30 }}>
                     <Slide />
-                </View> */}
+                </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={descripton}>
                         <Text style={{ fontSize: 30, color: '#F66D6A' }}>{vids.title}</Text>

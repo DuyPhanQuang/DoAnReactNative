@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity, 
          KeyboardAvoidingView, TextInput, AsyncStorage
 } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from '../Constants/AppConstants';
 import { APP_THEME } from '../Constants/Color';
 import apiLogin from '../../api/signIn';
-import Toast, {DURATION} from 'react-native-easy-toast';
 
 const background = require('../../Media/appicon/background1.jpg');
 const appIcon = require('../../Media/appicon/ic_app.png');
@@ -15,29 +15,28 @@ const passwordIcon = require('../../Media/appicon/password.png');
 export default class SignIn extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+    
+       this.state = {
             Email: '',
             Password: '',
         };
-        this.actionnn = this.actionnn.bind(this);
     }
-
-    // componentDidMount() {
-    //     this.actionnn();
-    // }
+    componentDidMount() {
+        this.actionnn();
+    }
 
     validateEmail(Email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(Email.toLowerCase());
     }
 
-    actionnn =  async () => {
-            if(this.state.Email = '')
+    actionnn = async (temp) => {
+            if (this.state.Email = '')
             {
                 this.refs.toast.show('Please enter email and password', 1000);
                 return;
             }
-            if(!this.validateEmail(this.state.Email))
+            if (!this.validateEmail(this.state.Email))
             {
                 this.refs.toast.show('Email is invalid', 1000);
                 return;
@@ -47,7 +46,6 @@ export default class SignIn extends Component {
             } catch (err) {
                 console.log('Login error: ', err);
             }
-            console.log(rest);
             if(temp.code === '200')
             {
                 console.log('sadwqewq');
@@ -89,7 +87,7 @@ export default class SignIn extends Component {
                             //   autoCorrect={false}
                             //   returnKeyType="done"
                             //   value={Email}
-                              onChangeText={(Email) => this.setState({ Email })}
+                              onChangeText={(text) => this.setState({ Email: text })}
                             />
                             <Toast ref='toast'/>
                         </View>
@@ -110,11 +108,11 @@ export default class SignIn extends Component {
                             //   autoCorrect={false}
                             //   returnKeyType="done"
                             //   value={Password}
-                              onChangeText={(Password) => this.setState({ Password })}
+                              onChangeText={(text) => this.setState({ Password: text })}
                             />
                             <Toast ref='toast'/>
                         </View>
-                        <TouchableOpacity activeOpacity={0.7} onPress={this.actionnn} >
+                        <TouchableOpacity activeOpacity={0.7} onPress={() => this.props.navigation.navigate('ManHinh_StepOne')} >
                             <View style={styles.buttonSubmit}>
                                 <Text style={styles.text}>Get Started</Text>
                             </View>

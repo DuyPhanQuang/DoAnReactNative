@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExFullBodyItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { loading: false };
+    }
     render() {
         const { item, index } = this.props;
         return (
@@ -11,10 +15,25 @@ export default class ExFullBodyItem extends Component {
                 <TouchableOpacity
                   activeOpacity={0.5}
                   onPress={
-                      () => this.props.navigation.navigate(
-                          'ManHinh_DetailExercisesFull',
-                  { title: item.Name, des: item.Description, bre: item.Breathing, urlvids: item.UrlVideo }
-                  )}
+                      () => {
+                        if (this.state.loading === false) {
+                            this.setState({ loading: true }, async () => {
+                              setTimeout(async () => {
+                                await this.props.navigation.navigate(
+                                    'ManHinh_DetailExercisesFull',
+                                        {
+                                        title: item.Name,
+                                        des: item.Description,
+                                        bre: item.Breathing,
+                                        urlvids: item.UrlVideo
+                                        }
+                                    );
+                                this.setState({ loading: false });
+                              }, 500);
+                            });
+                        }
+                      }
+                  }
                 >
                 <View
                   style={{

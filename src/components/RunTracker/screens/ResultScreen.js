@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -10,7 +10,7 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import moment from 'moment';
 
 import { APP_THEME, WORKOUT_DETAIL_COLOR } from '../../Constants/Color';
-import { DEVICE_HEIGHT, LATITUDE_DELTA, LONGITUDE_DELTA } from '../../Constants/AppConstants';
+import { DEVICE_HEIGHT, LATITUDE_DELTA, LONGITUDE_DELTA, DEVICE_WIDTH } from '../../Constants/AppConstants';
 
 import Headline from '../customControls/Headline';
 import WODItem from '../customControls/WODItem';
@@ -18,10 +18,10 @@ import WODItem from '../customControls/WODItem';
 const marker = require('../../../Media/appicon/marker.png');
 
 export default class ResultScreen extends Component {
-    static navigationOptions = {
-        title: 'RESULT',
-        headerTintColor: APP_THEME
-    };
+    // static navigationOptions = {
+    //     title: 'RESULT',
+    //     headerTintColor: APP_THEME,
+    // };
 
     constructor(props) {
         super(props);
@@ -35,7 +35,8 @@ export default class ResultScreen extends Component {
     state = {
         today: '',
         maxSpeed: 0,
-        avgSpeed: 0
+        avgSpeed: 0,
+        loading: false,
     }
 
     render() {
@@ -67,7 +68,7 @@ export default class ResultScreen extends Component {
             durationOverview
         } = styles;
         return (
-            <ScrollView>
+            <ScrollView showsVerticalIndicator={false}>
                 <View style={{ height: DEVICE_HEIGHT * 0.4, backgroundColor: 'red', marginBottom: 20 }}>
                     <MapView
                       style={{ ...StyleSheet.absoluteFillObject }}
@@ -199,6 +200,26 @@ export default class ResultScreen extends Component {
                         </WODItem>
                     </View>
                 </View>
+                <View style={{ flex: 1, marginBottom: 20, width: 300, marginLeft: 60 }}>
+                    <TouchableOpacity
+                      onPress={
+                          () => {
+                              if (this.state.loading === false) {
+                                  this.setState({ loading: true }, async () => {
+                                      setTimeout(async () => {
+                                          await this.props.navigation.navigate('ManHinh_Fitness');
+                                          this.setState({ loading: false });
+                                      }, 300);
+                                  });
+                              }
+                          }
+                      }
+                      activeOpacity={0.5}
+                      style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>DONE TRAINING</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         );
     }
@@ -246,5 +267,18 @@ const styles = StyleSheet.create({
     dataText: {
         fontSize: 18,
         color: 'black'
-    }
+    },
+    button: {
+        height: DEVICE_HEIGHT * 0.07,
+        backgroundColor: '#FFBF57',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+    },
+    buttonText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFF'
+    },
+
 });

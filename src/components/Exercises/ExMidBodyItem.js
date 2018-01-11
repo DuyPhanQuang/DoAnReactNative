@@ -4,11 +4,35 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExMidBodyItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { loading: false };
+    }
     render() {
+        const { item } = this.props;
         return (
             <View style={{ flex: 1 }}>
-                <TouchableOpacity 
+                <TouchableOpacity
                   activeOpacity={0.5}
+                  onPress={
+                      () => {
+                          if (this.state.loading === false) {
+                              this.setState({ loading: false }, async () => {
+                                setTimeout(async () => {
+                                    await this.props.navigation.navigate(
+                                        'ManHinh_DetailExercisesMid',
+                                            {
+                                            title: item.Name,
+                                            des: item.Description,
+                                            bre: item.Breathing,
+                                            urlvids: item.UrlVideo
+                                            }
+                                    );
+                                }, 500);
+                              });
+                          }
+                      }
+                  }
                 >
                 <View
                   style={{
@@ -30,7 +54,7 @@ export default class ExMidBodyItem extends Component {
                         <Text style={styles.title}>{this.props.item.Name}</Text>
                     </View>
                     <View style={{ justifyContent: 'center', }}>
-                    <Icon name="chevron-right" size={30} color='#F66D6A' />
+                    <Icon name="chevron-right" size={30} color="#F66D6A" />
                     </View>
 
                 </View>

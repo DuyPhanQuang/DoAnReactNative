@@ -31,14 +31,18 @@ import { BACKGROUND_TABBAR, APP_THEME } from './Constants/Color';
 import SignUpTwo from './Authentication/SignUp/SignUpTwo';
 import SignIn from './Authentication/SignIn';
 import DetailExercisesFull from './Exercises/DetailExercisesFull';
+import DetailExercisesTop from './Exercises/DetailExercisesTop';
+import DetailExercisesMid from './Exercises/DetailExercisesMid';
+import DetailExercisesBottom from './Exercises/DetailExercisesBottom';
+import FinishedTrainingDay from './Main/Fitness/FinishedTrainingDay';
 
 export const MainStack = StackNavigator({
-    // ManHinh_SignIn: {
-    //     screen: SignIn,
-    //     navigationOptions: {
-    //         header: null
-    //     }
-    // },
+    ManHinh_SignIn: {
+        screen: SignIn,
+        navigationOptions: {
+            header: null
+        }
+    },
     ManHinh_StepOne: {
         screen: StepOne,
         navigationOptions: {
@@ -49,6 +53,13 @@ export const MainStack = StackNavigator({
         screen: Fitness,
         navigationOptions: {
            header: null
+        }
+    },
+    ManHinh_FinishedTrainingDay: {
+        screen: FinishedTrainingDay,
+        navigationOptions: {
+            title: 'Workout',
+            headerTintColor: APP_THEME,
         }
     },
     ManHinh_Main: {
@@ -145,7 +156,11 @@ export const MainStack = StackNavigator({
     },
     ManHinh_RunTracker: { screen: PrepareRunScreen },
     ManHinh_Running: { screen: RunningScreen },
-    ManHinh_Result: { screen: ResultScreen }
+    ManHinh_Result: {
+        screen: ResultScreen,
+        navigationOptions: {
+        }
+     }
 });
 export const ExercisesFullBodyStack = StackNavigator({
     ManHinh_FullBody: {
@@ -186,7 +201,19 @@ export const ExercisesUpperBodyStack = StackNavigator({
             ),
             header: null
         }
-    }
+    },
+    ManHinh_DetailExercisesTop: {
+        screen: DetailExercisesTop,
+        navigationOptions: {
+            header: null,
+            tabBarIcon: ({ tintColor }) => (
+                <Image
+                  source={require('../Media/appicon/ic_topbody.png')}
+                  style={[styles.icon, { tintColor }]}
+                />
+            ),
+        }
+    },
 });
 export const ExercisesMiddleBodyStack = StackNavigator({
     ManHinh_MiddleBody: {
@@ -200,7 +227,19 @@ export const ExercisesMiddleBodyStack = StackNavigator({
             ),
             header: null
         }
-    }
+    },
+    ManHinh_DetailExercisesMid: {
+        screen: DetailExercisesMid,
+        navigationOptions: {
+            header: null,
+            tabBarIcon: ({ tintColor }) => (
+                <Image
+                  source={require('../Media/appicon/ic_middlebody.png')}
+                  style={[styles.icon, { tintColor }]}
+                />
+            ),
+        }
+    },
 });
 export const ExercisesLowerBodyStack = StackNavigator({
     ManHinh_LowerBody: {
@@ -214,7 +253,19 @@ export const ExercisesLowerBodyStack = StackNavigator({
             ),
             header: null
         }
-    }
+    },
+    ManHinh_DetailExercisesBottom: {
+        screen: DetailExercisesBottom,
+        navigationOptions: {
+            header: null,
+            tabBarIcon: ({ tintColor }) => (
+                <Image
+                  source={require('../Media/appicon/ic_lowerbody.png')}
+                  style={[styles.icon, { tintColor }]}
+                />
+            ),
+        }
+    },
 });
 
 // set exercisestab
@@ -248,7 +299,7 @@ export const ExercisesTab = TabNavigator({
     swipeEnabled: true,
     tabBarOptions: {
         style: {
-            backgroundColor: BACKGROUND_TABBAR
+            backgroundColor: '#9C9C9C'
         },
         labelStyle: {
             fontSize: 12,

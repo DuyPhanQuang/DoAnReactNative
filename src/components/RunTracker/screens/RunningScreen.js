@@ -43,7 +43,8 @@ export default class RunningScreen extends React.Component {
         routeCoordinates: [],
         prevLatLng: {},
         prevMoment: 0,
-        speedData: []
+        speedData: [],
+        loading: false,
     }
 
     componentWillMount() {
@@ -106,7 +107,7 @@ export default class RunningScreen extends React.Component {
         clearInterval(this.startTicking);
     }
 
-    onStop() {
+    onStop = async () => {
         const {
             stats,
             routeCoordinates,
@@ -114,17 +115,24 @@ export default class RunningScreen extends React.Component {
             prevLatLng,
             speedData
         } = this.state;
-
-        this.props.navigation.navigate(
-            'ManHinh_Result',
-            {
-                stats,
-                routeCoordinates,
-                startLocation,
-                stopLocation: prevLatLng,
-                speedData
-            }
-        );
+        if (this.state.loading === false) {
+            this.setState({ loading: true }, async () => {
+                setTimeout(async () => {
+                    await this.props.navigation.navigate(
+                        'ManHinh_Result',
+                        {
+                            stats,
+                            routeCoordinates,
+                            startLocation,
+                            stopLocation: prevLatLng,
+                            speedData
+                        }
+                    );
+                    this.setState({ loading: false });
+                }, 500);
+            });
+        }
+        
         clearInterval(this.startTicking);
     }
 
@@ -265,7 +273,14 @@ export default class RunningScreen extends React.Component {
                     <View style={buttonContainer}>
                         <Button
                           content="STOP"
-                          style={{ width: DEVICE_WIDTH * 0.75, backgroundColor: 'red' }}
+                          style={{
+                            width: 300,
+                            height: DEVICE_HEIGHT * 0.07,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: 50,
+                            backgroundColor: 'red'
+                          }}
                           onPress={this.onStop}
                         />
                     </View>
