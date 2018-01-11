@@ -3,6 +3,7 @@ import { View, FlatList, RefreshControl } from 'react-native';
 // import flatListData from './flatListData';
 import TipsItem from './TipsItem';
 import { getTipsFromServer } from '../../../networking/Server';
+import Slide from '../Exercises/SlideExercises';
 
 export default class BasicFlatList extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ export default class BasicFlatList extends Component {
         getTipsFromServer().then((tips) => {
             this.setState({ tipsFromServer: tips }); // call this function after finished getTipsFromServer().
             this.setState({ refreshing: false });
-        }).catch((error) => {
+        }).catch(() => {
             this.setState({ tipsFromServer: [] });
             this.setState({ refreshing: false });
         });
@@ -36,9 +37,11 @@ export default class BasicFlatList extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={{ flex: 1 }}>
-                <View style={{ flex: 2 }} />
-                <View style={{ flex: 5, marginTop: 22 }}>
+            <View style={{ flex: 1, backgroundColor: '#ECECEC' }}>
+                <View style={{ flex: 2 }}>
+                    <Slide />
+                </View>
+                <View style={{ flex: 5, marginTop: 2 }}>
                     <FlatList
                       showsVerticalScrollIndicator={false}
                       data={this.state.tipsFromServer}
@@ -49,10 +52,11 @@ export default class BasicFlatList extends Component {
                           item={item}
                           index={index + 1}
                           onShow={() => { navigate('ManHinh_TipOne'); }}
-                          />
+                        />
                          )
                       }
                       keyExtractor={(item, index) => item.Id}
+                      showsVerticalIndicator={false}
                       refreshControl={
                         <RefreshControl
                           refreshing={this.state.refreshing}

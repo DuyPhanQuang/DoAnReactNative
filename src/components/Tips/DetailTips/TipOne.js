@@ -133,7 +133,7 @@ const htmlContentNine = `
 class TipOne extends Component {
     render() {
         return (
-            <ScrollView style={{ flex: 1, backgroundColor: '#FFF' }}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, backgroundColor: '#FFF' }}>
                     <HTML
                     html={htmlContentNine} imagesMaxWidth={Dimensions.get('window').width - 100 }
                     />

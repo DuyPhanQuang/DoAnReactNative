@@ -192,7 +192,7 @@ export default class Menu extends Component {
         const mainJSX = this.state.isLoggedIn ? logInJSX : logOutJSX;
         return (
             <View style={container}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <ShowInfo />
                     { mainJSX }
                 </ScrollView>
@@ -239,6 +239,7 @@ const styles = StyleSheet.create({
     },
     btnTextStyleAfter: {
         fontSize: 20,
+        fontFamily: 'Cochin',
         paddingLeft: 20,
         color: '#000',
     },

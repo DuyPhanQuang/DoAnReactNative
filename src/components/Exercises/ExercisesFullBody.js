@@ -30,7 +30,7 @@ export default class ExercisesFullBody extends Component {
             this.state.isLoading ?
             <ActivityIndicator
               animating
-              color="white"
+              color="#F66D6A"
               size="large"
               hidesWhenStopped
               style={styles.activityIndicator}
@@ -51,7 +51,6 @@ export default class ExercisesFullBody extends Component {
                   )}
                   keyExtractor={(item, index) => item.Name}
                   showsVerticalScrollIndicator={false}
-                  scrollEnabled={false}
                 />
                 </View>
             </View>

@@ -5,11 +5,32 @@ import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExTopBodyItem extends Component {
     render() {
+        const { item } = this.props;
         return (
             <View style={{ flex: 1 }}>
-                <TouchableOpacity 
-                  activeOpacity={0.5}
-                >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={
+                () => {
+                  if (this.state.loading === false) {
+                      this.setState({ loading: true }, async () => {
+                        setTimeout(async () => {
+                          await this.props.navigation.navigate(
+                              'ManHinh_DetailExercisesTop',
+                                  {
+                                  title: item.Name,
+                                  des: item.Description,
+                                  bre: item.Breathing,
+                                  urlvids: item.UrlVideo
+                                  }
+                              );
+                          this.setState({ loading: false });
+                        }, 500);
+                      });
+                  }
+                }
+            }
+            >
                 <View
                   style={{
                         flex: 1,
@@ -30,11 +51,11 @@ export default class ExTopBodyItem extends Component {
                         <Text style={styles.title}>{this.props.item.Name}</Text>
                     </View>
                     <View style={{ justifyContent: 'center', }}>
-                    <Icon name="chevron-right" size={30} color='#F66D6A' />
+                    <Icon name="chevron-right" size={30} color="#F66D6A" />
                     </View>
 
                 </View>
-                </TouchableOpacity>
+            </TouchableOpacity>
                 <View style={{ height: 2, backgroundColor: APP_THEME }} />
 
             </View>

@@ -15,7 +15,8 @@ import {
     LONGITUDE,
     LATITUDE_DELTA,
     LONGITUDE_DELTA,
-    DEVICE_WIDTH
+    DEVICE_WIDTH,
+    DEVICE_HEIGHT,
 } from '../../Constants/AppConstants';
 import { APP_THEME, MY_GREEN_COLOR } from '../../Constants/Color';
 
@@ -27,12 +28,12 @@ async function checkAndRequestLocation() {
         };
         const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, rationale);
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log('Permission granted');
+            // console.log('Permission granted');
         } else {
-            console.log('Location permission denied');
+            // console.log('Location permission denied');
         }
     } catch (err) {
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -61,7 +62,8 @@ export default class PrepareRunScreen extends React.Component {
         },
         targetUnit: 'min',
         targetValue: 30,
-        disable: true
+        disable: true,
+        loading: false,
     };
 
     componentDidMount() {
@@ -77,7 +79,7 @@ export default class PrepareRunScreen extends React.Component {
             },
             (error) => {
                 alert('Error: Are location services on?');
-                console.log(error.message);
+                // console.log(error.message);
             },
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         );
@@ -192,11 +194,26 @@ export default class PrepareRunScreen extends React.Component {
                 <View style={buttonContainer}>
                     <Button
                       style={{
-                        backgroundColor: MY_GREEN_COLOR,
-                        width: DEVICE_WIDTH * 0.75
+                        width: 300,
+                        height: DEVICE_HEIGHT * 0.07,
+                        backgroundColor: '#41C677',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: 50,
                         }}
                       content="START RUNNING"
-                      onPress={() => this.props.navigation.navigate('ManHinh_Running', { ...this.state })}
+                      onPress={
+                          () => {
+                              if (this.state.loading === false) {
+                                  this.setState({ loading: true }, async () => {
+                                      setTimeout(async () => {
+                                          await this.props.navigation.navigate('ManHinh_Running', { ...this.state });
+                                          this.setState({ loading: false });
+                                      }, 500);
+                                  });
+                              }
+                          }
+                      }
                       disable={this.state.disable}
                     />
                 </View>

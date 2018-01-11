@@ -4,11 +4,36 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExBottomBodyItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { loading: false };
+    }
     render() {
+        const { item } = this.props;
         return (
             <View style={{ flex: 1 }}>
                 <TouchableOpacity 
                   activeOpacity={0.5}
+                  onPress={
+                      () => {
+                          if (this.state.loading === false) {
+                              this.setState({ loading: true }, async () => {
+                                  setTimeout(async () => {
+                                    await this.props.navigation.navigate(
+                                        'ManHinh_DetailExercisesBottom',
+                                        {
+                                            title: item.Name,
+                                            des: item.Description,
+                                            bre: item.Breathing,
+                                            urlvids: item.UrlVideo
+                                        }
+                                    );
+                                    this.setState({ loading: false });
+                                  }, 500);
+                              });
+                          }
+                      }
+                  }
                 >
                 <View
                   style={{
