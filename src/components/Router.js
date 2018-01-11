@@ -30,6 +30,7 @@ import { BACKGROUND_TABBAR, APP_THEME } from './Constants/Color';
 // import SignInTwo from './Authentication/SignIn/SignInTwo';
 import SignUpTwo from './Authentication/SignUp/SignUpTwo';
 import SignIn from './Authentication/SignIn';
+import DetailExercisesFull from './Exercises/DetailExercisesFull';
 
 export const MainStack = StackNavigator({
     // ManHinh_SignIn: {
@@ -159,7 +160,19 @@ export const ExercisesFullBodyStack = StackNavigator({
             header: null
 
         }
-    }
+    },
+    ManHinh_DetailExercisesFull: {
+        screen: DetailExercisesFull,
+        navigationOptions: {
+            header: null,
+            tabBarIcon: ({ tintColor }) => (
+                <Image
+                  source={require('../Media/appicon/ic_fullbody.png')}
+                  style={[styles.icon, { tintColor }]}
+                />
+            ),
+        }
+    },
 });
 export const ExercisesUpperBodyStack = StackNavigator({
     ManHinh_UpperBody: {
@@ -231,7 +244,7 @@ export const ExercisesTab = TabNavigator({
         }
     }
 }, {
-    tabBarPosition: 'bottom',
+    tabBarPosition: 'top',
     swipeEnabled: true,
     tabBarOptions: {
         style: {

@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
 
 const apiGetAllTips = 'https://doan-fitness.herokuapp.com/tips';
 // const apiGetAllAboutWeightLoss = 'http://10.0.137.5:3000/aboutweightloss';
@@ -16,7 +14,7 @@ async function getTipsFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of tips db
     } catch (error) {
-        console.error(`Error is : ${error}`);
+        // console.error(`Error is : ${error}`);
         return null;
     }
 }
@@ -26,7 +24,7 @@ async function getTrainingDataFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of trainingday db
     } catch (error) {
-        console.error(`Error is: ${error}`);
+        // console.error(`Error is: ${error}`);
         return null;
     }
 }
@@ -36,7 +34,7 @@ async function getExFullbodyFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of db exfullbody
     } catch (error) {
-        console.error(`Error is: ${error}`);
+        // console.error(`Error is: ${error}`);
         return null;
     }
 }
@@ -46,7 +44,7 @@ async function getExTopbodyFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of db extopbody
     } catch (error) {
-        console.error(`Error is: ${error}`);
+        // console.error(`Error is: ${error}`);
         return null;
     }
 }
@@ -56,7 +54,7 @@ async function getExMidbodyFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of db exmidbody
     } catch (error) {
-        console.error(`Error is: ${error}`);
+        // console.error(`Error is: ${error}`);
         return null;
     }
 }
@@ -66,7 +64,7 @@ async function getExBottombodyFromServer() {
         const responseJson = await response.json();
         return responseJson; // list of db exbottombody
     } catch (error) {
-        console.error(`Error is: ${error}`);
+        // console.error(`Error is: ${error}`);
         return null;
     }
 }

@@ -68,6 +68,7 @@ export default class StartComponent extends Component {
                   )}
                   keyExtractor={(item, index) => item.Name}
                   horizontal
+                  showsHorizontalScrollIndicator={false}
                 />
             </View>
         );

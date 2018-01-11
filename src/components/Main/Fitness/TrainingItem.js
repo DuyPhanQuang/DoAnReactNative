@@ -98,7 +98,7 @@ export default class TrainingItem extends Component {
                         >
                             <View style={finished ? disableButton : button}>
                                 <Text style={buttonText} >
-                                    {finished ? 'FINIHED' : 'START'}
+                                    {finished ? 'FINISHED' : 'START'}
                                 </Text>
                             </View>
                         </TouchableOpacity>

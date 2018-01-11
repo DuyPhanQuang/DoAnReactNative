@@ -10,12 +10,7 @@ export default class MainExercises extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
-                <SlideExercises />
-            </View>
-            <View style={{ flex: 3, marginTop: 10 }}>
-            <ExercisesTab />
-            </View>
+                <ExercisesTab />
             </View>
         );
     }
