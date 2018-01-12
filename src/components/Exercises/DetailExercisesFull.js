@@ -27,7 +27,6 @@ export default class DetailExercisesFull extends Component {
         loading: false,
     }
 
-    video : Video;
 
     componentWillMount() {
         this.setState({ vids: this.props.navigation.state.params });
@@ -127,7 +126,7 @@ export default class DetailExercisesFull extends Component {
                       onPress={() => this.setState({ paused: !this.state.paused })}
                     >
                     <Video
-                      ref={(ref : Video) => { this.video = ref; }}
+                      ref={(ref) => { this.video = ref; }}
                       source={{ uri: vids.urlvids }}
                       resizeMode={this.state.resizeMode}
                       style={video}

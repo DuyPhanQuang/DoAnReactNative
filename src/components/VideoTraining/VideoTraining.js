@@ -38,16 +38,17 @@ export default class VideoTraining extends Component {
             let arr = [];
             await getTrainingData(() => {}).then((val) => { arr = val; });
             arr[this.props.navigation.state.params.index] = true;
-            await setTrainingData(arr);
-            await this.props.refreshFinish();
-            await this.props.navigation.goBack();
+            setTrainingData(arr);
+            // await this.props.refreshFinish();
+             this.props.navigation.goBack();
+            
             return;
         }
-        await this.setState({
+        this.setState({
             currentVideoIndex: currentVideoIndex + 1,
             canNext: false
         });
-        await this.video.seek(0);
+        this.video.seek(0);
     }
 
      back() {
@@ -75,7 +76,7 @@ export default class VideoTraining extends Component {
                       style={video}
                       resizeMode="cover"
                       onProgress={prog =>
-                        this.setState({ progress: Math.round(prog.currentTime) })}
+                      this.setState({ progress: Math.round(prog.currentTime) })}
                       onLoad={data => this.onLoadVideo(data)}
                       onEnd={() => this.setState({ canNext: true })}
                     />
@@ -111,7 +112,7 @@ export default class VideoTraining extends Component {
                             </AnimatedCircularProgress>
                         </View>
                         <TouchableOpacity
-                          onPress={this.forward}
+                          onPress={async () => { await this.forward(); }}
                           disabled={!canNext}
                         >
                             <Icon

@@ -158,7 +158,14 @@ export const MainStack = StackNavigator({
     ManHinh_Running: { screen: RunningScreen },
     ManHinh_Result: {
         screen: ResultScreen,
+        headerMode: 'none',
         navigationOptions: {
+            header: {
+                titleStyle: {
+                   textAlign: 'center',
+                },
+             },
+            headerVisible: false,
         }
      }
 });

@@ -171,9 +171,9 @@ export default class DetailExercisesMid extends Component {
                         </View>
                     </View>
                 </View>
-                <View style={{ flex: 1, borderRadius: 30 }}>
+                {/* <View style={{ flex: 1, borderRadius: 30 }}>
                     <Slide />
-                </View>
+                </View> */}
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={descripton}>
                         <Text style={{ fontSize: 30, color: '#F66D6A' }}>{vids.title}</Text>

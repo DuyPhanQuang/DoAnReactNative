@@ -61,7 +61,9 @@ export default class FinishedTrainingDay extends Component {
                     <View style={slide}>
                         <Slide />
                     </View>
+
                     <View style={list}>
+                       
                         <FlatList
                           showsVerticalScrollIndicator={false}
                           data={resultTrainingDay}
@@ -75,6 +77,7 @@ export default class FinishedTrainingDay extends Component {
                           }
                           keyExtractor={(item, index) => item.TitleName}
                         />
+                        
                     </View>
                 </View>
         );
