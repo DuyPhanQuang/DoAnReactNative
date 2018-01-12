@@ -45,11 +45,11 @@ export default class VideoTraining extends Component {
             this.props.navigation.goBack();
             return;
         }
-        await this.setState({
+        this.setState({
             currentVideoIndex: currentVideoIndex + 1,
             canNext: false
         });
-        await this.video.seek(0);
+        this.video.seek(0);
     }
 
     back() {
@@ -113,7 +113,7 @@ export default class VideoTraining extends Component {
                             </AnimatedCircularProgress>
                         </View>
                         <TouchableOpacity
-                          onPress={this.forward}
+                          onPress={async () => { await this.forward(); }}
                           disabled={!canNext}
                         >
                             <Icon
