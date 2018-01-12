@@ -9,7 +9,9 @@ export default class FinishedTrainingDayItem extends Component {
         const { container, number, text } = styles;
         return (
            <View style={container}>
+                <View style={{ width: 70, height: 70, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={number}>{index}</Text>
+                </View>
                 <View style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
                 <Text style={text}>{item.TitleName}</Text>
                 </View>

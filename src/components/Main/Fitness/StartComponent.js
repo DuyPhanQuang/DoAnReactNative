@@ -28,9 +28,9 @@ export default class StartComponent extends Component {
             });
 
         let data = null;
-        await getTrainingData(e => console.log(e))
+        await getTrainingData()
             .then((val) => { data = val; });
-        console.log(data);
+        // console.log(data);
 
         if (data === null) {
             const arr = [];

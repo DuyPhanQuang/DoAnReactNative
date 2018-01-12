@@ -21,7 +21,6 @@ export default class VideoTraining extends Component {
         duration: 1,
         progress: 0,
     }
-
     componentWillMount() {
         this.setState({ vids: this.props.navigation.state.params.data });
     }
@@ -32,27 +31,26 @@ export default class VideoTraining extends Component {
         });
         this.setState({ canNext: false });
     }
-
     async forward() {
         const { currentVideoIndex, vids } = this.state;
         if (currentVideoIndex === vids.length - 1) {
-            console.log('forward1');
+            // console.log('forward1');
             let arr = [];
             await getTrainingData(() => {}).then((val) => { arr = val; });
             arr[this.props.navigation.state.params.index] = true;
-            setTrainingData(arr);
-            this.props.refreshFinish();
-            this.props.navigation.goBack();
+            await setTrainingData(arr);
+            await this.props.refreshFinish();
+            await this.props.navigation.goBack();
             return;
         }
-        this.setState({
+        await this.setState({
             currentVideoIndex: currentVideoIndex + 1,
             canNext: false
         });
-        this.video.seek(0);
+        await this.video.seek(0);
     }
 
-    back() {
+     back() {
         this.setState({
             currentVideoIndex: this.state.currentVideoIndex - 1
         });

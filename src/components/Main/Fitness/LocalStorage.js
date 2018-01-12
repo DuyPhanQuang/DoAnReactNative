@@ -13,9 +13,9 @@ async function getTrainingData(callback) {
 
 function setTrainingData(arr) {
     const data = JSON.stringify(arr);
-    console.log(data);
-    AsyncStorage.setItem('trainingdata', data, error => console.log(error))
-        .then(console.log('success'));
+    // console.log(data);
+    AsyncStorage.setItem('trainingdata', data)
+        .then();
 }
 
 async function getProgress() {
