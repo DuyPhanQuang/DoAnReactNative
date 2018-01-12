@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { APP_THEME } from '../Constants/AppConstants';
 
 export default class ExTopBodyItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { loading: false };
+    }
     render() {
         const { item } = this.props;
         return (

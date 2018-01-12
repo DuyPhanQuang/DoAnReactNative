@@ -159,13 +159,10 @@ export const MainStack = StackNavigator({
     ManHinh_Result: {
         screen: ResultScreen,
         headerMode: 'none',
+        
         navigationOptions: {
-            header: {
-                titleStyle: {
-                   textAlign: 'center',
-                },
-             },
             headerVisible: false,
+            header: null,
         }
      }
 });

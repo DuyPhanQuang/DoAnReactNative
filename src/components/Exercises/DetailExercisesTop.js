@@ -10,7 +10,6 @@ export default class DetailExercisesTop extends Component {
         super(props);
     }
     state = {
-        currentVideoIndex: 0,
         vids: {
             title: '',
             des: '',
@@ -26,8 +25,6 @@ export default class DetailExercisesTop extends Component {
         resizeMode: 'contain',
         loading: false,
     }
-
-    video : Video;
 
     componentWillMount() {
         this.setState({ vids: this.props.navigation.state.params });
@@ -127,7 +124,7 @@ export default class DetailExercisesTop extends Component {
                       onPress={() => this.setState({ paused: !this.state.paused })}
                     >
                     <Video
-                      ref={(ref : Video) => { this.video = ref; }}
+                      ref={(ref) => { this.video = ref; }}
                       source={{ uri: vids.urlvids }}
                       resizeMode={this.state.resizeMode}
                       style={video}

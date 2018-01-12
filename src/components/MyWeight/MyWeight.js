@@ -23,13 +23,13 @@ export default class MyWeight extends Component {
             pickerFontSize: 18,
             pickerFontColor: [255,0,0,10],
             onPickerConfirm: (pickedValue, pickedIndex) => {
-                console.log('weight', pickedValue, pickedIndex);
+                //console.log('weight', pickedValue, pickedIndex);
             },
             onPickerCancel: (pickedValue, pickedIndex) => {
-                console.log('weight', pickedValue, pickedIndex);
+                //console.log('weight', pickedValue, pickedIndex);
             },
             onPickerSelect: (pickedValue, pickedIndex) => {
-                console.log('weight', pickedValue, pickedIndex);
+                //console.log('weight', pickedValue, pickedIndex);
             }
         });
         Picker.show();
